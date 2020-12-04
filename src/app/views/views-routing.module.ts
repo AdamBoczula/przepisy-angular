@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CategoriesComponent } from './views/categories/categories.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 const routes: Routes = [
   {
     path: '',
     component: CategoriesComponent,
-  },
-  {
-    path: '**',
-    redirectTo: '',
   },
 ];
 
@@ -17,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class ViewsRoutingModule {}

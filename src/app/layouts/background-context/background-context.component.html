@@ -1,1 +1,9 @@
-<rp-splash-screen *ngIf="showSplashScreen | async"></rp-splash-screen>
+  <div class="full-height" [@showSplashScreen]="(showSplashScreen$ | async) ? 'on' : 'off'">
+    <img src="../../../assets/photos/splash-screen.jpg" class="image" alt="background-image">
+    <div class="application-title">
+      Przepisy
+    </div>
+  </div>
+<div class="content" [@showSplashScreen]="(showSplashScreen$ | async) ? 'off' : 'on'">
+  <router-outlet></router-outlet>
+</div>

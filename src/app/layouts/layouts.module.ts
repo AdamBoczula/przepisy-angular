@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BackgroundContextComponent } from './background-context/background-context.component';
-import { SplashScreenComponent } from './splash-screen/splash-screen.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [BackgroundContextComponent, SplashScreenComponent],
-  imports: [CommonModule],
+  declarations: [BackgroundContextComponent],
+  imports: [CommonModule, RouterModule],
   exports: [BackgroundContextComponent],
 })
 export class LayoutsModule {}

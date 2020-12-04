@@ -2,18 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
+import { RootComponent } from './root.component';
 import { AppRoutingModule } from './app-routing.module';
-import { LayoutsModule } from './layouts/layouts.module';
-import { BackgroundContextComponent } from './layouts/background-context/background-context.component';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    LayoutsModule,
-  ],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
   providers: [],
-  bootstrap: [BackgroundContextComponent],
+  bootstrap: [RootComponent],
+  declarations: [RootComponent],
 })
 export class AppModule {}

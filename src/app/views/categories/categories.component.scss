@@ -1,0 +1,31 @@
+@import "../../styles/palette.scss";
+
+:host {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: $white;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .form-group {
+      width: 100%;
+
+      label,
+      input {
+        width: 100%;
+        display: block;
+      }
+    }
+  }
+}
