@@ -4,9 +4,15 @@ import { NgModule } from '@angular/core';
 
 import { RootComponent } from './root.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ServicesModule } from './services/services.module';
 
 @NgModule({
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    ServicesModule,
+  ],
   providers: [],
   bootstrap: [RootComponent],
   declarations: [RootComponent],
