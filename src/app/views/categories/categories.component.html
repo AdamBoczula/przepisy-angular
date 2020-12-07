@@ -18,5 +18,10 @@
 
 <hr />
 <div class="category-list">
-
+  <rp-category-card class="mb-2"
+                    *ngFor="let category of (categories$ | async)"
+                    [imageUrl]="category.photoUrl"
+                    [title]="category.categoryName"
+                    [recipesCount]="category.recipesCount"
+  >x</rp-category-card>
 </div>

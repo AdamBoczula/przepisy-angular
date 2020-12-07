@@ -1,4 +1,5 @@
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
 import { CategoriesService, Category } from 'src/app/categories.service';
 
@@ -14,7 +15,7 @@ class MockCategoriesService {
   ]);
 }
 
-describe('CategoriesComponent', () => {
+fdescribe('CategoriesComponent', () => {
   let component: CategoriesComponent;
   let fixture: ComponentFixture<CategoriesComponent>;
 
@@ -38,5 +39,12 @@ describe('CategoriesComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should contains 1 category-card component', () => {
+    const categoryCards = fixture.debugElement.query(
+      By.css('rp-category-card')
+    );
+    expect(categoryCards?.childNodes.length).toBe(1);
   });
 });
