@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CategoriesService, Category } from 'src/app/categories.service';
+import { CategoriesService, Category } from 'src/app/services/categories.service';
 
 @Component({
   selector: 'rp-categories',

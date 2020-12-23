@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { CategoriesService } from './categories.service';
-import { ServicesModule } from './services/services.module';
+import { ServicesModule } from './services.module';
 
 describe('CategoriesService', () => {
   let service: CategoriesService;

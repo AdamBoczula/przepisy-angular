@@ -1,7 +1,7 @@
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
-import { CategoriesService, Category } from 'src/app/categories.service';
+import { CategoriesService, Category } from 'src/app/services/categories.service';
 
 import { CategoriesComponent } from './categories.component';
 
