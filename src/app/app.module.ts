@@ -4,16 +4,14 @@ import { NgModule } from '@angular/core';
 
 import { RootComponent } from './root.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ServicesModule } from './services/services.module';
-import { CategoriesModule } from './views/categories/categories.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ServicesModule,
-    CategoriesModule,
+    CoreModule,
   ],
   providers: [],
   bootstrap: [RootComponent],
