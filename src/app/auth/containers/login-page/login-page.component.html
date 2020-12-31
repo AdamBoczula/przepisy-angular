@@ -1,1 +1,4 @@
-<rp-login-page-form></rp-login-page-form>
+<rp-login-page-form (login)="loginAction($event)"
+                    [pending]="pending$ | async"
+                    [error]="error$ | async">
+</rp-login-page-form>
