@@ -18,12 +18,12 @@ export class LoginPageFormComponent {
   @Input() pending: boolean | null = false;
   @Output() login: EventEmitter<Credentials> = new EventEmitter();
   public form: FormGroup = new FormGroup({
-    username: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
 
-  public get usernameFormControl(): AbstractControl | null {
-    return this.form.get('username');
+  public get emailFormControl(): AbstractControl | null {
+    return this.form.get('email');
   }
 
   public get passwordFormControl(): AbstractControl | null {

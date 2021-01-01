@@ -5,6 +5,7 @@ import {
   createFeatureSelector,
 } from '@ngrx/store';
 import * as fromLoginPage from './login-page.reducer';
+import * as fromAuth from './auth.reducer';
 import * as fromRoot from '../../../reducers';
 
 export const authFeatureKey = 'auth';
@@ -23,6 +24,7 @@ export function reducers(
 ): { [fromLoginPage.loginPageFeatureKey]: fromLoginPage.State } {
   return combineReducers({
     [fromLoginPage.loginPageFeatureKey]: fromLoginPage.reducer,
+    [fromAuth.loginPageFeatureKey]: fromAuth.reducer,
   })(state, action);
 }
 

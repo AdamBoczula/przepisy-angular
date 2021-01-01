@@ -1,4 +1,4 @@
-import { LoginPageActions, AuthApiActions } from '../actions/';
+import { AuthApiActions, LoginPageActions } from '../actions/';
 import { createReducer, on } from '@ngrx/store';
 import { Error } from 'src/app/models/error';
 

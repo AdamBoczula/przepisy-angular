@@ -11,6 +11,8 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { ROOT_REDUCERS, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { firebaseConfig } from './firebaseConfig';
 
 @NgModule({
   imports: [
@@ -35,6 +37,8 @@ import { environment } from '../environments/environment';
       // logOnly: environment.production,
     }),
     StoreRouterConnectingModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig, 'naszeprzepisy'),
+    // AngularFireDatabaseModule,
   ],
   providers: [],
   bootstrap: [RootComponent],

@@ -8,6 +8,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import * as fromAuth from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/effects/auth.effects';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [LoginPageComponent, LoginPageFormComponent],
@@ -15,9 +18,11 @@ import { EffectsModule } from '@ngrx/effects';
     CommonModule,
     AuthRoutingModule,
     MaterialModule,
+    AngularFireAuthModule,
     ReactiveFormsModule,
     StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducers),
-    // EffectsModule.forFeature([AuthEffects]),
+    EffectsModule.forFeature([AuthEffects]),
   ],
+  providers: [AuthService],
 })
 export class AuthModule {}
