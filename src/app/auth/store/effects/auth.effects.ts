@@ -40,7 +40,7 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthApiActions.loginRedirect),
-        tap(() => this.router.navigate(['recipes']))
+        tap(() => this.router.navigate(['dashboard']))
       ),
     { dispatch: false }
   );

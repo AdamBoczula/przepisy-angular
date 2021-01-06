@@ -19,7 +19,6 @@ import { firebaseConfig } from './firebaseConfig';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    CoreModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot(ROOT_REDUCERS, {
       metaReducers,
