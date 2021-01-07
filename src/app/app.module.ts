@@ -4,13 +4,11 @@ import { NgModule } from '@angular/core';
 
 import { RootComponent } from './root.component';
 import { AppRoutingModule } from './app-routing.module';
-import { CoreModule } from './core/core.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { ROOT_REDUCERS, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { firebaseConfig } from './firebaseConfig';
 
