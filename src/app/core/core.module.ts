@@ -5,6 +5,7 @@ import { NavigationComponent } from './containers/navigation/navigation.componen
 import { BackgroundLayoutComponent } from './containers/background-layout/background-layout.component';
 import { RecipesComponent } from './containers/recipes/recipes.component';
 import { CreateNewComponent } from './containers/create-new/create-new.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { CreateNewComponent } from './containers/create-new/create-new.component
     BackgroundLayoutComponent,
     RecipesComponent,
     CreateNewComponent,
+    MenuComponent,
   ],
   imports: [CommonModule, CoreRoutingModule],
 })

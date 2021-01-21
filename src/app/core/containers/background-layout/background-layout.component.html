@@ -1,10 +1,5 @@
 <div class="content">
   <router-outlet></router-outlet>
 </div>
-<div class="menu">
-  <a routerLink="/dashboard/categories" routerLinkActive="active">Kategorie</a>
-  <a routerLink="/dashboard/recipes" routerLinkActive="active">Przepisy</a>
-  <a routerLink="/dashboard/new" routerLinkActive="active">Dodaj nowy</a>
-  <a routerLink="/" routerLinkActive="active">Wyloguj</a>
+<rp-menu (logout)=onLogout()></rp-menu>
 
-</div>
