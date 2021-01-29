@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './guards/auth.guard';
 import {
   AngularFireAuthGuard,
   redirectLoggedInTo,
@@ -8,15 +7,15 @@ import {
 } from '@angular/fire/auth-guard';
 import { UserResolver } from './resolvers/user.resolver';
 
-const redirectLoggedInToItems = () => redirectLoggedInTo(['dashboard']);
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
+const redirectLoggedInToItems = () => redirectLoggedInTo('dashboard');
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo('/');
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
     canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectLoggedInToItems }, // ustawienie juzera
+    data: { authGuardPipe: redirectLoggedInToItems },
   },
   {
     path: 'dashboard',
@@ -24,7 +23,6 @@ const routes: Routes = [
     resolve: [UserResolver],
     loadChildren: () => import('./core/core.module').then((m) => m.CoreModule),
     data: { authGuardPipe: redirectUnauthorizedToLogin },
-    // ustawienie juzera
   },
 ];
 

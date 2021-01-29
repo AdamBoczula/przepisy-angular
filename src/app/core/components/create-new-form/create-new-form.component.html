@@ -1,0 +1,23 @@
+<form [formGroup]=form>
+  <!-- nazwa  -->
+  <mat-form-field>
+    <mat-label>Nazwa</mat-label>
+    <input type="text" matInput formControlName="name">
+    <mat-error *ngIf="nameFormControl?.hasError('required')">
+      Nazwa jest <strong>wymagana</strong>
+    </mat-error>
+  </mat-form-field>
+    <!-- kategoria -->
+    <mat-form-field>
+      <mat-label>Kategoria</mat-label>
+      <mat-select formControlName="categories" multiple>
+        <mat-option *ngFor="let category of availableCategories"
+        [value]="category">{{category}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  <!-- Składniki -->
+  <rp-ingredients formControlName="ingredients"></rp-ingredients>
+  <!-- Kroki -->
+  <rp-steps></rp-steps>
+  <button mat-raised-button color="primary" type="submit" (click)="submit()">Dodaj</button>
+</form>

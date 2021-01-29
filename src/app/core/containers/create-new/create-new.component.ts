@@ -3,13 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'rp-create-new',
   templateUrl: './create-new.component.html',
-  styleUrls: ['./create-new.component.scss']
+  styleUrls: ['./create-new.component.scss'],
 })
 export class CreateNewComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
