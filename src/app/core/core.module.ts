@@ -7,12 +7,12 @@ import { RecipesComponent } from './containers/recipes/recipes.component';
 import { CreateNewComponent } from './containers/create-new/create-new.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CreateNewFormComponent } from './components/create-new-form/create-new-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
-import { IngredientsComponent } from './components/ingredients/ingredients.component';
-import { SimpleStepComponent } from '../simple-step/simple-step.component';
+// import { IngredientsComponent } from './components/ingredients/ingredients.component';
+import { SimpleStepComponent } from './components/simple-step/simple-step.component';
 import { StepsComponent } from '../steps/steps.component';
-import { SimpleIngredientComponent } from '../simple-ingredient/simple-ingredient.component';
+import { SimpleIngredientComponent } from './components/simple-ingredient/simple-ingredient.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { SimpleIngredientComponent } from '../simple-ingredient/simple-ingredien
     CreateNewComponent,
     CreateNewFormComponent,
     MenuComponent,
-    IngredientsComponent,
+    // IngredientsComponent,
     StepsComponent,
     SimpleIngredientComponent,
     SimpleStepComponent,
@@ -32,6 +32,7 @@ import { SimpleIngredientComponent } from '../simple-ingredient/simple-ingredien
     CoreRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
+    FormsModule,
   ],
 })
 export class CoreModule {}

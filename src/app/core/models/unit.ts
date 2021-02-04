@@ -1,7 +1,7 @@
 export enum Unit {
-  PIECE = 'PIECE',
-  MILILITER = 'MILILITER',
-  GRAM = 'GRAM',
-  TEASPOON = 'TEASPOON',
-  SPOON = 'SPOON',
+  PIECE = 'szt',
+  MILILITER = 'ml',
+  GRAM = 'g',
+  TEASPOON = 'łyżeczka',
+  SPOON = 'łyżka',
 }

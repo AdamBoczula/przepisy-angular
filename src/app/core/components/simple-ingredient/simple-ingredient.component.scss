@@ -1,0 +1,15 @@
+:host {
+  .container {
+    display: grid;
+    max-width: 100%;
+    grid-template-columns: 48% 15% 20% 9%;
+
+    column-gap: 0.5rem;
+
+    align-items: center;
+  }
+
+  .disabled {
+    opacity: 0.6;
+  }
+}

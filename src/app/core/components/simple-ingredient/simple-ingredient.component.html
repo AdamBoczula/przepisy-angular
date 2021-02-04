@@ -1,0 +1,21 @@
+<form class="container" [formGroup]="ingredientFG">
+  <mat-form-field>
+    <mat-label>Składnik</mat-label>
+    <input type="text" matInput formControlName="name">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Ilość</mat-label>
+    <input type="text" matInput formControlName="quantity">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Jednostka</mat-label>
+    <mat-select formControlName="unit">
+      <mat-option *ngFor="let unit of availableUnits" [value]="unit">{{ unit }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-icon-button [disabled]="disabled()" color="primary">
+    <mat-icon color="warn" style="cursor: pointer;" (click)="remove()" [ngClass]="{'disabled': disabled()}">delete
+    </mat-icon>
+  </button>
+</form>
+

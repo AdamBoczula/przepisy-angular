@@ -1,5 +1,5 @@
 import { Category } from './category';
-import { ingredient } from './ingredient';
+import { Ingredient } from './ingredient';
 import { Step } from './step';
 
 export interface Recipe {
@@ -8,6 +8,6 @@ export interface Recipe {
   categories: Category[];
   time: number; // raczej w minutach, treba to zaznaczyć.
   downtime?: number; // raczej w godzinach, trzeba to zaznaczyć.
-  ingredients: ingredient[];
+  ingredients: Ingredient[];
   steps: Step[];
 }
