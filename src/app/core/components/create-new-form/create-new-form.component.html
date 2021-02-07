@@ -25,6 +25,11 @@
     </rp-simple-ingredient>
   </div>
   <!-- Kroki -->
-  <rp-steps></rp-steps>
+  <mat-label>Kroki</mat-label>
+  <textarea matInput
+            cdkTextareaAutosize
+            cdkAutosizeMinRows="10"
+            cdkAutosizeMaxRows="15"></textarea>
+
   <button mat-raised-button color="primary" type="submit" (click)="submit()">Dodaj</button>
 </form>

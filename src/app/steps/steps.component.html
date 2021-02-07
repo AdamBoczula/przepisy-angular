@@ -1,1 +1,5 @@
-<p>steps works!</p>
+<div class="steps" formArrayName="steps">
+  <div *ngFor="let ingredient of steps?.controls; let i = index;">
+    {{ i }}
+  </div>
+</div>

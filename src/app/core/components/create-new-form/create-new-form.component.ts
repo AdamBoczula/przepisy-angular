@@ -16,7 +16,7 @@ export class CreateNewFormComponent {
     name: new FormControl(null, Validators.required),
     categories: new FormControl(null, Validators.required),
     ingredients: new FormArray([]),
-    steps: new FormControl([], Validators.required),
+    steps: new FormArray([]),
   });
 
   constructor(private formBuilder: FormBuilder) {
@@ -38,6 +38,10 @@ export class CreateNewFormComponent {
 
   public get ingredients(): FormArray {
     return this.form.get('ingredients') as FormArray;
+  }
+
+  public get steps(): FormArray {
+    return this.form.get('steps') as FormArray;
   }
 
   public submit(): void {

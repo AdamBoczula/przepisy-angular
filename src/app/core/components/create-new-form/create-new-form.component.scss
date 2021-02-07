@@ -15,6 +15,12 @@
       overflow-y: auto;
     }
 
+    .steps {
+      max-height: 220px;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
     button {
       margin-top: 1rem;
     }
