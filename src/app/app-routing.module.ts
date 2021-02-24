@@ -6,9 +6,10 @@ import {
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
 import { UserResolver } from './resolvers/user.resolver';
+import { canActivate } from '@angular/fire/auth-guard';
 
-const redirectLoggedInToItems = () => redirectLoggedInTo('dashboard');
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo('/');
+const redirectLoggedInToItems = () => redirectLoggedInTo(['dashboard']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
 
 const routes: Routes = [
   {
@@ -19,10 +20,10 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    canActivate: [AngularFireAuthGuard],
     resolve: [UserResolver],
     loadChildren: () => import('./core/core.module').then((m) => m.CoreModule),
     data: { authGuardPipe: redirectUnauthorizedToLogin },
+    canActivate: [AngularFireAuthGuard],
   },
 ];
 

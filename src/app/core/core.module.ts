@@ -9,10 +9,13 @@ import { MenuComponent } from './components/menu/menu.component';
 import { CreateNewFormComponent } from './components/create-new-form/create-new-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
-// import { IngredientsComponent } from './components/ingredients/ingredients.component';
 import { SimpleStepComponent } from './components/simple-step/simple-step.component';
 import { StepsComponent } from '../steps/steps.component';
 import { SimpleIngredientComponent } from './components/simple-ingredient/simple-ingredient.component';
+import * as fromCore from './store/reducers';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { RecipeCreationEffect } from './store/effects/recipe-creation.effect';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,6 @@ import { SimpleIngredientComponent } from './components/simple-ingredient/simple
     CreateNewComponent,
     CreateNewFormComponent,
     MenuComponent,
-    // IngredientsComponent,
     StepsComponent,
     SimpleIngredientComponent,
     SimpleStepComponent,
@@ -33,6 +35,8 @@ import { SimpleIngredientComponent } from './components/simple-ingredient/simple
     ReactiveFormsModule,
     MaterialModule,
     FormsModule,
+    StoreModule.forFeature(fromCore.coreFeatureKey, fromCore.reducers),
+    EffectsModule.forFeature([RecipeCreationEffect]),
   ],
 })
 export class CoreModule {}

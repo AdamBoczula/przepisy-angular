@@ -1,12 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Ingredient, Recipe } from '../../models';
+
+import * as fromRecipeCreator from '../../store/reducers';
+import { RecipeActions, RecipeCreationActions } from '../../store/actions';
 
 @Component({
   selector: 'rp-create-new',
   templateUrl: './create-new.component.html',
   styleUrls: ['./create-new.component.scss'],
 })
-export class CreateNewComponent implements OnInit {
-  constructor() {}
+export class CreateNewComponent {
+  public pending$ = this.store.select(
+    fromRecipeCreator.selectRecipeCreationPending
+  );
+  constructor(private store: Store<fromRecipeCreator.State>) {}
 
-  ngOnInit(): void {}
+  public createNewRecipe(recipe: Recipe): void {
+    recipe.ingredients = this.removeEmptyIngredient(recipe.ingredients);
+    this.store.dispatch(RecipeCreationActions.createRecipe({ recipe }));
+    this.store.dispatch(RecipeCreationActions.createRecipeSuccess());
+  }
+
+  private removeEmptyIngredient(ingredients: Ingredient[]): Ingredient[] {
+    return ingredients.filter((i) => !!i.name);
+  }
 }

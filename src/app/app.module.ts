@@ -21,8 +21,6 @@ import { firebaseConfig } from './firebaseConfig';
     StoreModule.forRoot(ROOT_REDUCERS, {
       metaReducers,
       runtimeChecks: {
-        // strictStateImmutability and strictActionImmutability are enabled by default
-        strictStateSerializability: true,
         strictActionSerializability: true,
         strictActionWithinNgZone: true,
         strictActionTypeUniqueness: true,

@@ -1,6 +1,13 @@
-import { Component } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Category, Unit } from '../../models';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { Category, Recipe, Unit } from '../../models';
 import { debounce } from 'rxjs/operators';
 import { timer } from 'rxjs';
 
@@ -10,17 +17,20 @@ import { timer } from 'rxjs';
   styleUrls: ['./create-new-form.component.scss'],
 })
 export class CreateNewFormComponent {
+  @Input() public pending: boolean | null = null;
+  @Output() public createNew: EventEmitter<Recipe> = new EventEmitter<Recipe>();
   public availableCategories: string[] = Object.values(Category);
   public availableUnits: string[] = Object.values(Unit);
   public form: FormGroup = this.formBuilder.group({
     name: new FormControl(null, Validators.required),
     categories: new FormControl(null, Validators.required),
     ingredients: new FormArray([]),
-    steps: new FormArray([]),
+    steps: new FormControl(null),
   });
 
   constructor(private formBuilder: FormBuilder) {
-    this.ingredients.valueChanges.pipe(debounce(() => timer(500)))
+    this.ingredients.valueChanges
+      .pipe(debounce(() => timer(500)))
       .subscribe(() => {
         if (this.canAddIngredient()) {
           this.createIngredient();
@@ -45,7 +55,9 @@ export class CreateNewFormComponent {
   }
 
   public submit(): void {
-    console.log('submit:', this.form.value);
+    if (this.form.valid) {
+      this.createNew.emit(this.form.value);
+    }
   }
 
   public onDelete(ingredientIndex: number): void {
@@ -53,14 +65,19 @@ export class CreateNewFormComponent {
   }
 
   private canAddIngredient(): boolean {
-    return !this.ingredients.controls.some(ingredient => !ingredient.value.name);
+    return !this.ingredients.controls.some(
+      (ingredient) => !ingredient.value.name
+    );
   }
 
   private createIngredient(): void {
-    this.ingredients.insert(this.ingredients.controls.length, new FormGroup({
-      name: new FormControl(null, Validators.required),
-      quantity: new FormControl(null),
-      unit: new FormControl(null),
-    }));
+    this.ingredients.insert(
+      this.ingredients.controls.length,
+      new FormGroup({
+        name: new FormControl(null),
+        quantity: new FormControl(null),
+        unit: new FormControl(null),
+      })
+    );
   }
 }

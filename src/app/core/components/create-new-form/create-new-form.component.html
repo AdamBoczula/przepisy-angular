@@ -1,3 +1,4 @@
+<mat-spinner *ngIf="pending" class="spinner"></mat-spinner>
 <form [formGroup]=form>
   <!-- nazwa  -->
   <mat-form-field>
@@ -29,7 +30,8 @@
   <textarea matInput
             cdkTextareaAutosize
             cdkAutosizeMinRows="10"
-            cdkAutosizeMaxRows="15"></textarea>
+            cdkAutosizeMaxRows="15"
+            formControlName="steps"></textarea>
 
   <button mat-raised-button color="primary" type="submit" (click)="submit()">Dodaj</button>
 </form>
