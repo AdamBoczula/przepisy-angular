@@ -2,6 +2,7 @@ import { Category } from './category';
 import { Ingredient } from './ingredient';
 
 export interface Recipe {
+  id?: string;
   name: string;
   imagePath?: string; // w przyszłości możliwe, że damy możliwość wrzucania zdjęcia.
   categories: Category[];

@@ -19,20 +19,20 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
-  on(RecipeCreationActions.createRecipe, (state, { recipe }) => {
-    console.log('heeejoooo');
-    return {
-      ...state,
-      recipe,
-      pending: true,
-    };
-  }),
-  on(RecipeCreationActions.createRecipeSuccess, (state) => {
-    console.log('state:', state);
-    return {
-      ...state,
-    };
-  })
+  on(RecipeCreationActions.createRecipe, (state, { recipe }) => ({
+    ...state,
+    recipe,
+    pending: true,
+  })),
+  on(RecipeCreationActions.createRecipeSuccess, (state) => ({
+    ...state,
+    pendind: false,
+  })),
+  on(RecipeCreationActions.createRecipeFailure, (state, { error }) => ({
+    ...state,
+    error,
+    pending: false,
+  }))
 );
 
 export const getError = (state: State) => state.error;

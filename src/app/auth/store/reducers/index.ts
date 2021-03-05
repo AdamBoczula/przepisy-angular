@@ -57,3 +57,7 @@ export const selectUserState = createSelector(
 );
 
 export const selectUser = createSelector(selectUserState, fromUser.getUser);
+export const selectUserId = createSelector(
+  selectUserState,
+  (state) => state.user?.uid
+);

@@ -11,6 +11,7 @@ import { ROOT_REDUCERS, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AngularFireModule } from '@angular/fire';
 import { firebaseConfig } from './firebaseConfig';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 @NgModule({
   imports: [
@@ -35,7 +36,7 @@ import { firebaseConfig } from './firebaseConfig';
       routerState: RouterState.Minimal,
     }),
     AngularFireModule.initializeApp(firebaseConfig, 'naszeprzepisy'),
-    // AngularFireDatabaseModule,
+    AngularFireDatabaseModule,
   ],
   providers: [],
   bootstrap: [RootComponent],

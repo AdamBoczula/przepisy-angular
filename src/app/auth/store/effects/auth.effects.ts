@@ -19,6 +19,7 @@ export class AuthEffects {
           map((user) =>
             AuthApiActions.loginSuccess({
               user: {
+                id: user.user?.uid,
                 email: user.user?.email,
               } as User,
               loginRedirect: true,

@@ -15,7 +15,7 @@ import { SimpleIngredientComponent } from './components/simple-ingredient/simple
 import * as fromCore from './store/reducers';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { RecipeCreationEffect } from './store/effects/recipe-creation.effect';
+import { RecipeEffect } from './store/effects/recipe.effect';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { RecipeCreationEffect } from './store/effects/recipe-creation.effect';
     MaterialModule,
     FormsModule,
     StoreModule.forFeature(fromCore.coreFeatureKey, fromCore.reducers),
-    EffectsModule.forFeature([RecipeCreationEffect]),
+    EffectsModule.forFeature([RecipeEffect]),
   ],
 })
 export class CoreModule {}

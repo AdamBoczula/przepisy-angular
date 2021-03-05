@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { Error } from 'src/app/models/error';
 import { Recipe } from '../../models';
 
 export const createRecipe = createAction(

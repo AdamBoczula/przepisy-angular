@@ -20,7 +20,7 @@ export class UserResolver implements Resolve<boolean> {
     if (user) {
       this.store.dispatch(
         loginSuccess({
-          user: { email: user.email as string },
+          user: { email: user.email as string, uid: user.uid },
           loginRedirect: false,
         })
       );
