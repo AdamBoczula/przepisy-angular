@@ -36,21 +36,16 @@ export class RecipeEffect {
   );
 
   public fetchRecipes$: Observable<Action> = createEffect(() =>
-    this.actions$.pipe(ofType(RecipeActions.fetchRecipesSuccess),
-    withLatestFrom(this.store.select(fromAuth.selectUserId)),
-    switchMap(([userId]) => this.recipeService.fetchRecipes(userId).pipe(catchError(e) => of(null),
-    map(() => )))
-
+    this.actions$.pipe(ofType(RecipeActions.fetchRecipes),
+      withLatestFrom(this.store.select(fromAuth.selectUserId)),
+      switchMap(([_, userId]) => this.recipeService.fetchRecipes(userId)
+        .pipe(
+          map((recipes) => RecipeActions.fetchRecipesSuccess({ recipes })),
+          catchError(e => of(RecipeActions.fetchRecipesFailure)),
+        )
+      )
+    )
   );
-
-  // FETCH
-  // switchMap(([_, user]) =>
-  //   this.recipeService.fetchRecipes(user?.uid)
-  //     .pipe(
-  //       map(() => RecipeCreationActions.createRecipeSuccess({recipes})) // recipeCreationSuccess(recipes)
-  //       catchError(e => RecipeCreationActions.createRecipeFailure({error: e})) //recipeCreationFailure
-  //       )
-  // )
 
   constructor(
     private actions$: Actions,

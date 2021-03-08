@@ -4,6 +4,7 @@ import { Ingredient, Recipe } from '../../models';
 
 import * as fromRecipeCreator from '../../store/reducers';
 import { RecipeActions, RecipeCreationActions } from '../../store/actions';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'rp-create-new',
@@ -12,14 +13,13 @@ import { RecipeActions, RecipeCreationActions } from '../../store/actions';
 })
 export class CreateNewComponent {
   public pending$ = this.store.select(
-    fromRecipeCreator.selectRecipeCreationPending
-  );
+    fromRecipeCreator.selectRecipeCreationPending);
+
   constructor(private store: Store<fromRecipeCreator.State>) {}
 
   public createNewRecipe(recipe: Recipe): void {
     recipe.ingredients = this.removeEmptyIngredient(recipe.ingredients);
     this.store.dispatch(RecipeCreationActions.createRecipe({ recipe }));
-    this.store.dispatch(RecipeCreationActions.createRecipeSuccess());
   }
 
   private removeEmptyIngredient(ingredients: Ingredient[]): Ingredient[] {

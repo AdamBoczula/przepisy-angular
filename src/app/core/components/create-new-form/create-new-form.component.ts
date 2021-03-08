@@ -57,6 +57,7 @@ export class CreateNewFormComponent {
   public submit(): void {
     if (this.form.valid) {
       this.createNew.emit(this.form.value);
+      this.form.reset(null, { emitEvent: true,  });
     }
   }
 

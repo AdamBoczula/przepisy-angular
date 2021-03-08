@@ -5,6 +5,7 @@ import { CategoriesComponent } from './containers/categories/categories.componen
 import { CreateNewComponent } from './containers/create-new/create-new.component';
 import { DashboardComponent } from './containers/dashboard/dashboard.component';
 import { RecipesComponent } from './containers/recipes/recipes.component';
+import { RecipeResolver } from '../resolvers/recipe.resolver';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
       {
         path: 'recipes',
         component: RecipesComponent,
+        resolve: [RecipeResolver],
       },
       {
         path: 'new',
@@ -35,4 +37,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CoreRoutingModule {}
+export class CoreRoutingModule {
+}

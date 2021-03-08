@@ -1,9 +1,12 @@
-<mat-spinner *ngIf="pending" class="spinner"></mat-spinner>
+<mat-spinner *ngIf="pending"
+             class="spinner"></mat-spinner>
 <form [formGroup]=form>
   <!-- nazwa  -->
   <mat-form-field>
     <mat-label>Nazwa</mat-label>
-    <input type="text" matInput formControlName="name">
+    <input type="text"
+           matInput
+           formControlName="name">
     <mat-error *ngIf="nameFormControl?.hasError('required')">
       Nazwa jest <strong>wymagana</strong>
     </mat-error>
@@ -11,13 +14,15 @@
   <!-- kategoria -->
   <mat-form-field>
     <mat-label>Kategoria</mat-label>
-    <mat-select formControlName="categories" multiple>
+    <mat-select formControlName="categories"
+                multiple>
       <mat-option *ngFor="let category of availableCategories"
                   [value]="category">{{category}}</mat-option>
     </mat-select>
   </mat-form-field>
   <!-- Składniki -->
-  <div class="ingredients" formArrayName="ingredients">
+  <div class="ingredients"
+       formArrayName="ingredients">
     <rp-simple-ingredient *ngFor="let ingredient of ingredients.controls; let i = index;"
                           (removeIngredient)="onDelete($event)"
                           [ingredientIndex]="i"
@@ -32,6 +37,9 @@
             cdkAutosizeMinRows="10"
             cdkAutosizeMaxRows="15"
             formControlName="steps"></textarea>
-
-  <button mat-raised-button color="primary" type="submit" (click)="submit()">Dodaj</button>
+  <button mat-raised-button
+          color="primary"
+          type="submit"
+          (click)="submit()">Dodaj
+  </button>
 </form>

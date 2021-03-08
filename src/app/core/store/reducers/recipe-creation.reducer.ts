@@ -26,7 +26,7 @@ export const reducer = createReducer(
   })),
   on(RecipeCreationActions.createRecipeSuccess, (state) => ({
     ...state,
-    pendind: false,
+    pending: false,
   })),
   on(RecipeCreationActions.createRecipeFailure, (state, { error }) => ({
     ...state,
