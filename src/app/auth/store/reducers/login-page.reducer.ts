@@ -16,7 +16,7 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
-  on(LoginPageActions.login, (state) => ({
+  on(LoginPageActions.loginViaEmail, (state) => ({
     ...state,
     error: null,
     pending: true,

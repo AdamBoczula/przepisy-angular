@@ -10,11 +10,26 @@ export const loginFailure = createAction(
   '[Auth/API] Login Failure',
   props<{ error: Error }>()
 );
-export const loginRedirect = createAction('[Auth/API] Login Redirect');
 
 export const logoutSuccess = createAction('[Auth/API] Logout Success');
+
+export const createAccountSuccess = createAction('[Auth/API] Create Account Success');
+
 export const logoutFailure = createAction(
   '[Auth/API] Logout Failure',
   props<{ error: Error }>()
 );
-export const logoutRedirect = createAction('[Auth/API] Logout redirect');
+export const createAccountFailure = createAction(
+  '[Auth/API] Create Account Failure',
+  props<{ error: Error }>()
+);
+
+
+export const resetPasswordForEmailSuccess = createAction(
+  '[Reset Password] Reset Password For Email Success'
+);
+
+export const resetPasswordForEmailFailure = createAction(
+  '[Reset Password] Reset Password For Email Failure',
+  props<{ error: string }>()
+);

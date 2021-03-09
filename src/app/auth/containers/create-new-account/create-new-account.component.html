@@ -1,0 +1,6 @@
+<rp-create-new-account-form
+  [error]="error$ | async"
+  [pending]="pending$ | async"
+  (back)="back()"
+  (createAccount)="createAccount($event)">
+</rp-create-new-account-form>

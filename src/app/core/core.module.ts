@@ -16,6 +16,7 @@ import * as fromCore from './store/reducers';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { RecipeEffect } from './store/effects/recipe.effect';
+import { RecipeComponent } from './containers/recipe/recipe.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { RecipeEffect } from './store/effects/recipe.effect';
     StepsComponent,
     SimpleIngredientComponent,
     SimpleStepComponent,
+    RecipeComponent
   ],
   imports: [
     CommonModule,

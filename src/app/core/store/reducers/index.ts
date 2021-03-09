@@ -1,11 +1,7 @@
-import {
-  Action,
-  combineReducers,
-  createSelector,
-  createFeatureSelector,
-} from '@ngrx/store';
+import { Action, combineReducers, createFeatureSelector, createSelector, } from '@ngrx/store';
 import * as fromRecipeCreation from './recipe-creation.reducer';
 import * as fromRecipe from './recipe.reducer';
+import { recipeFeatureKey } from './recipe.reducer';
 import * as fromRoot from '../../../reducers';
 
 export const coreFeatureKey = 'core';
@@ -49,4 +45,14 @@ export const selectRecipeCreationError = createSelector(
 export const selectRecipeCreationPending = createSelector(
   selectRecipeCreationState,
   fromRecipeCreation.getPending
+);
+
+export const selectRecipeFeatureState = createSelector(
+  selectRecipeState,
+  (state) => state[recipeFeatureKey]
+);
+
+export const selectRecipes = createSelector(
+  selectRecipeFeatureState,
+  fromRecipe.getRecipes
 );

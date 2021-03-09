@@ -1,4 +1,8 @@
-<rp-login-page-form (login)="loginAction($event)"
+<rp-login-page-form (loginViaEmail)="loginViaEmail($event)"
+                    (loginViaFacebook)="loginViaFacebook()"
+                    (loginViaGoogle)="loginViaGoogle()"
+                    (resetPassword)="resetPassword()"
+                    (createAccount)="createAccount()"
                     [pending]="pending$ | async"
                     [error]="error$ | async">
 </rp-login-page-form>

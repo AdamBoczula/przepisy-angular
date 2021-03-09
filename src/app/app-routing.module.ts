@@ -6,7 +6,6 @@ import {
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
 import { UserResolver } from './resolvers/user.resolver';
-import { canActivate } from '@angular/fire/auth-guard';
 
 const redirectLoggedInToItems = () => redirectLoggedInTo(['dashboard']);
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);

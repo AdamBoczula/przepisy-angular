@@ -12,6 +12,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AngularFireModule } from '@angular/fire';
 import { firebaseConfig } from './firebaseConfig';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [
@@ -23,6 +25,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
       metaReducers,
       runtimeChecks: {
         strictActionSerializability: true,
+        strictActionImmutability: true,
         strictActionWithinNgZone: true,
         strictActionTypeUniqueness: true,
       },
@@ -37,9 +40,11 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     }),
     AngularFireModule.initializeApp(firebaseConfig, 'naszeprzepisy'),
     AngularFireDatabaseModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [RootComponent],
   declarations: [RootComponent],
 })
-export class AppModule {}
+export class AppModule {
+}

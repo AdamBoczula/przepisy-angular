@@ -9,14 +9,30 @@ import * as fromAuth from '../../store/reducers';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent {
   pending$ = this.store.select(fromAuth.selectLoginPagePending);
   error$ = this.store.select(fromAuth.selectLoginPageError);
+
   constructor(private store: Store<fromAuth.State>) {}
 
-  ngOnInit(): void {}
+  public loginViaEmail(credentials: Credentials): void {
+    this.store.dispatch(LoginPageActions.loginViaEmail({ credentials }));
+  }
 
-  public loginAction(credentials: Credentials): void {
-    this.store.dispatch(LoginPageActions.login({ credentials }));
+  public loginViaFacebook(): void {
+    this.store.dispatch(LoginPageActions.loginViaFacebook());
+  }
+
+  public loginViaGoogle(): void {
+    this.store.dispatch(LoginPageActions.loginViaGoogle());
+  }
+
+  public createAccount(): void {
+    this.store.dispatch(LoginPageActions.createAccountRedirect());
+  }
+
+  public resetPassword(): void {
+    this.store.dispatch(LoginPageActions.resetPassword());
+
   }
 }

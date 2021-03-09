@@ -39,7 +39,7 @@ describe('LoginPageFormComponent', () => {
     );
     loginPageComponent.form.get('username')?.setValue('admin');
     loginPageComponent.form.get('password')?.setValue('123');
-    loginPageComponent.submit();
+    loginPageComponent.loginEmail();
     expect(component.onLogin).toHaveBeenCalled();
   });
 
@@ -49,7 +49,7 @@ describe('LoginPageFormComponent', () => {
     );
     loginPageComponent.form.get('username')?.setValue(null);
     loginPageComponent.form.get('password')?.setValue(null);
-    loginPageComponent.submit();
+    loginPageComponent.loginEmail();
     expect(component.onLogin).not.toHaveBeenCalled();
   });
 });
