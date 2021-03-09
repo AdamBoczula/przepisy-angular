@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'rp-root',
   template: '<router-outlet></router-outlet>',
 })
-export class RootComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+export class RootComponent  {
 }

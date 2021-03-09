@@ -1,4 +1,4 @@
-import { ApplicationInitStatus, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Credentials, User } from '../../models';
 import { AuthService } from '../../services/auth.service';
@@ -87,23 +87,6 @@ export class AuthEffects {
     )
   );
 
-  private loginSuccess$: Observable<Action> = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AuthApiActions.loginSuccess),
-      filter(({ loginRedirect }) => !!loginRedirect),
-      map(() => LoginPageActions.dashboardRedirect())
-    )
-  );
-
-  private dashboardRedirect$: Observable<Action> = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(LoginPageActions.dashboardRedirect),
-        tap(() => this.router.navigate(['dashboard']))
-      ),
-    { dispatch: false }
-  );
-
   private logout$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.logout),
@@ -114,30 +97,6 @@ export class AuthEffects {
         )
       )
     )
-  );
-
-  private logoutSuccess$: Observable<Action> = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AuthApiActions.logoutSuccess),
-      map(() => LoginPageActions.loginRedirect())
-    )
-  );
-
-  private loginRedirect$: Observable<Action> = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(LoginPageActions.loginRedirect),
-        tap(() => this.router.navigate(['/']))
-      ),
-    { dispatch: false }
-  );
-
-  private redirectCreateAccount$: Observable<Action> = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(LoginPageActions.createAccountRedirect),
-        tap(() => this.router.navigate(['create-new-account']))
-      ), { dispatch: false }
   );
 
   private createAccount$: Observable<Action> = createEffect(
@@ -157,6 +116,48 @@ export class AuthEffects {
       )
   );
 
+  private loginSuccess$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthApiActions.loginSuccess),
+      filter(({ loginRedirect }) => !!loginRedirect),
+      map(() => LoginPageActions.dashboardRedirect())
+    )
+  );
+
+  private logoutSuccess$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthApiActions.logoutSuccess),
+      map(() => LoginPageActions.loginRedirect())
+    )
+  );
+
+  private dashboardRedirect$: Observable<Action> = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(LoginPageActions.dashboardRedirect,
+          AuthApiActions.createAccountSuccess),
+        tap(() => this.router.navigate(['dashboard']))
+      ),
+    { dispatch: false }
+  );
+
+  private loginRedirect$: Observable<Action> = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(LoginPageActions.loginRedirect),
+        tap(() => this.router.navigate(['/']))
+      ),
+    { dispatch: false }
+  );
+
+  private redirectCreateAccount$: Observable<Action> = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(LoginPageActions.createAccountRedirect),
+        tap(() => this.router.navigate(['create-new-account']))
+      ), { dispatch: false }
+  );
+
   private returnLoginSuccess(user: UserCredential): Action {
     return AuthApiActions.loginSuccess({
       user: {
@@ -173,6 +174,5 @@ export class AuthEffects {
     private router: Router,
     private dialog: MatDialog,
     private store: Store<fromAuth.State>
-  ) {
-  }
+  ) { }
 }

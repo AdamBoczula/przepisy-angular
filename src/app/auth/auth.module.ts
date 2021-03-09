@@ -16,7 +16,13 @@ import { CreateNewAccountComponent } from './containers/create-new-account/creat
 import { CreateNewAccountFormComponent } from './components/create-new-account-form/create-new-account-form.component';
 
 @NgModule({
-  declarations: [LoginPageComponent, LoginPageFormComponent, ResetPasswordDialogComponent, CreateNewAccountComponent, CreateNewAccountFormComponent],
+  declarations: [
+    LoginPageComponent,
+    LoginPageFormComponent,
+    ResetPasswordDialogComponent,
+    CreateNewAccountComponent,
+    CreateNewAccountFormComponent
+  ],
   imports: [
     CommonModule,
     AuthRoutingModule,

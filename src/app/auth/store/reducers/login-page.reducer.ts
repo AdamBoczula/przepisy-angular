@@ -1,4 +1,4 @@
-import { LoginPageActions, AuthApiActions } from '../actions/';
+import { LoginPageActions, AuthApiActions, CreateAccountActions } from '../actions/';
 import { createReducer, on } from '@ngrx/store';
 import { Error } from 'src/app/models/error';
 
@@ -16,17 +16,28 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
-  on(LoginPageActions.loginViaEmail, (state) => ({
+  on(LoginPageActions.loginViaEmail,
+    LoginPageActions.loginViaGoogle,
+    LoginPageActions.loginViaFacebook,
+    LoginPageActions.resetPassword,
+    CreateAccountActions.createAccount,
+    (state) => ({
     ...state,
     error: null,
     pending: true,
   })),
-  on(AuthApiActions.loginSuccess, (state) => ({
+  on(AuthApiActions.loginSuccess,
+    AuthApiActions.createAccountSuccess,
+    AuthApiActions.resetPasswordForEmailSuccess,
+    (state) => ({
     ...state,
     error: null,
     pending: false,
   })),
-  on(AuthApiActions.loginFailure, (state, { error }) => ({
+  on(AuthApiActions.loginFailure,
+    AuthApiActions.createAccountFailure,
+    AuthApiActions.resetPasswordForEmailFailure,
+    (state, { error }) => ({
     ...state,
     error,
     pending: false,

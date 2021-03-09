@@ -24,7 +24,6 @@ export const createAccountFailure = createAction(
   props<{ error: Error }>()
 );
 
-
 export const resetPasswordForEmailSuccess = createAction(
   '[Reset Password] Reset Password For Email Success'
 );

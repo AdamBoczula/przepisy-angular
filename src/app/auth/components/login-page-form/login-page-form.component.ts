@@ -21,7 +21,6 @@ const GOOGLE_SVG_ICON = `
 })
 export class LoginPageFormComponent {
   @Input() error: Error = null;
-  @Input() pending: boolean | null = false;
 
   @Output() loginViaEmail: EventEmitter<Credentials> = new EventEmitter();
   @Output() loginViaFacebook: EventEmitter<void> = new EventEmitter();
