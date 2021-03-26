@@ -10,7 +10,7 @@ import {
   withLatestFrom,
 } from 'rxjs/operators';
 import { RecipeService } from '../../services/recipe.service';
-import * as fromAuth from '../../../auth/store/reducers';
+import * as fromAuth from '@authStore/reducers';
 import { RecipeActions, RecipeCreationActions } from '../actions';
 
 @Injectable()

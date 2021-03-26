@@ -1,11 +1,7 @@
-<mat-spinner *ngIf="pending$ | async"
-             class="spinner">
+<mat-spinner color="accent" *ngIf=" pending$ | async" class="spinner">
 </mat-spinner>
 
-<rp-login-page-form (loginViaEmail)="loginViaEmail($event)"
-                    (loginViaFacebook)="loginViaFacebook()"
-                    (loginViaGoogle)="loginViaGoogle()"
-                    (resetPassword)="resetPassword()"
-                    (createAccount)="createAccount()"
-                    [error]="error$ | async">
+<rp-login-page-form (loginViaEmail)="loginViaEmail($event)" (loginViaFacebook)="loginViaFacebook()"
+  (loginViaGoogle)="loginViaGoogle()" (resetPassword)="resetPassword()" (createAccount)="createAccount()"
+  [error]="error$ | async">
 </rp-login-page-form>

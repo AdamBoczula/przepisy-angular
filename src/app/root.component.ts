@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'rp-root',
-  template: '<router-outlet></router-outlet>',
+  templateUrl: 'root.component.html',
+  styleUrls: ['root.component.scss'],
 })
 export class RootComponent  {
 }

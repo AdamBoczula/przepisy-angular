@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import * as fromAuth from '../../store/reducers';
+import { CreateAccountActions } from '@authStore/actions';
 import { Store } from '@ngrx/store';
-import { CreateAccountActions, LoginPageActions } from '../../store/actions/';
+import { RedirectionActions } from '@rootStore/actions';
 import { Credentials } from '../../models';
+import * as fromAuth from '../../store/reducers';
 
 @Component({
   selector: 'rp-create-new-account',
@@ -17,7 +18,7 @@ export class CreateNewAccountComponent {
   constructor(private store: Store<fromAuth.State>) { }
 
   public back(): void {
-    this.store.dispatch(LoginPageActions.loginRedirect());
+    this.store.dispatch(RedirectionActions.login());
   }
 
   public createAccount(credentials: Credentials): void {

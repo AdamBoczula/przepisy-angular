@@ -1,6 +1,6 @@
+import { User } from '@core/models';
+import { UserActions } from '@coreStore/actions';
 import { createReducer, on } from '@ngrx/store';
-import { AuthApiActions } from '../actions';
-import { User } from '../../models';
 
 export const userFeatureKey = 'user';
 
@@ -14,10 +14,11 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
-  on(AuthApiActions.loginSuccess, (state, { user }) => ({
+  on(UserActions.setUser, (state, { user }) => ({
     ...state,
     user,
   }))
 );
 
 export const getUser = (state: State) => state.user;
+

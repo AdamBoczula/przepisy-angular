@@ -1,29 +1,33 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 import {
-  AngularFireAuthGuard,
   redirectLoggedInTo,
   redirectUnauthorizedTo,
+  AngularFireAuthGuard,
 } from '@angular/fire/auth-guard';
+import { RouterModule, Routes } from '@angular/router';
 import { UserResolver } from './resolvers/user.resolver';
 
 const redirectLoggedInToItems = () => redirectLoggedInTo(['dashboard']);
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['auth']);
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
-    canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectLoggedInToItems },
+    // canActivate: [AngularFireAuthGuard],
+    // data: { authGuardPipe: redirectLoggedInToItems },
   },
+  // {
+  //   path: 'dashboard',
+  //   resolve: [UserResolver],
+  //   loadChildren: () => import('./core/core.module').then((m) => m.CoreModule),
+  //   data: { authGuardPipe: redirectUnauthorizedToLogin },
+  //   canActivate: [AngularFireAuthGuard],
+  // },
   {
-    path: 'dashboard',
-    resolve: [UserResolver],
-    loadChildren: () => import('./core/core.module').then((m) => m.CoreModule),
-    data: { authGuardPipe: redirectUnauthorizedToLogin },
-    canActivate: [AngularFireAuthGuard],
-  },
+    path: '**',
+    redirectTo: 'auth'
+  }
 ];
 
 @NgModule({

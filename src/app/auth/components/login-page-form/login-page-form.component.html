@@ -1,58 +1,37 @@
-<form [formGroup]=form>
-  <mat-form-field>
+<form [formGroup]=form fxLayout="column" fxLayoutAlign="center" class="u-mt-2">
+  <mat-form-field class="u-mb-1">
     <mat-label>Email</mat-label>
-    <input type="text"
-           matInput
-           formControlName="email">
+    <input type="text" matInput formControlName="email">
     <mat-error *ngIf="emailFormControl?.hasError('email') && !emailFormControl?.hasError('required')">
-      Please enter a valid email address
+      Wprowadź email
     </mat-error>
     <mat-error *ngIf="emailFormControl?.hasError('required')">
-      Email is <strong>required</strong>
+      Email jest <strong>wymagany</strong>
     </mat-error>
   </mat-form-field>
   <mat-form-field>
-    <mat-label>Password</mat-label>
-    <input type="password"
-           matInput
-           formControlName="password">
+    <mat-label>Hasło</mat-label>
+    <input type="password" matInput formControlName="password">
     <mat-error *ngIf="passwordFormControl?.hasError('required')">
-      Password is <strong>required</strong>
+      Hasło jest <strong>wymagane</strong>
     </mat-error>
   </mat-form-field>
-  <button mat-raised-button
-          color="primary"
-          type="submit"
-          class="u-mb-8"
-          (click)="loginEmail()">Login
+  <button mat-raised-button color="primary" type="submit" class="u-mt-2" (click)="loginEmail()">Login
   </button>
-  <button mat-button
-          color="accent"
-          class="u-mb-64"
-          (click)="create()">Stwórz konto
+  <button mat-button color="accent" class="u-mt-2 u-mb-2" (click)="create()">Stwórz konto
   </button>
-  <p class="u-mb-8">Lub zaloguj się przez</p>
-  <div class="social-media-login u-mb-8">
-    <button mat-raised-button
-            class="u-mr-4"
-            color="primary"
-            (click)="loginGoogle()">
-      <mat-icon svgIcon="google"
-                aria-hidden="false"
-                aria-label="Login using Google">
+  <hr class="u-mb-1 u-mt-1">
+  <p class="u-mb-1">Lub zaloguj się przez</p>
+  <div class="social-media-login u-mb-2">
+    <button mat-raised-button class="u-mr-1" color="primary" (click)="loginGoogle()">
+      <mat-icon svgIcon="google" aria-hidden="false" aria-label="Login using Google">
       </mat-icon>
     </button>
-    <button mat-raised-button
-            color="primary"
-            (click)="loginFacebook()">
-      <mat-icon aria-hidden="false"
-                class="facebook"
-                aria-label="Login using Facebook">facebook
+    <button mat-raised-button color="primary" (click)="loginFacebook()">
+      <mat-icon aria-hidden="false" class="facebook" aria-label="Login using Facebook">facebook
       </mat-icon>
     </button>
   </div>
-  <button mat-button
-          (click)="reset()"
-          color="warn">Resetuj hasło
+  <button mat-button (click)="reset()" color="warn">Resetuj hasło
   </button>
 </form>

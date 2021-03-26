@@ -27,10 +27,6 @@ export class AuthService {
     );
   }
 
-  public logout(): Observable<void> {
-    return from(this.afAuth.signOut());
-  }
-
   public resetPassword(email: string): Observable<void> {
     return from(this.afAuth.sendPasswordResetEmail(email));
   }

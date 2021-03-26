@@ -1,26 +1,28 @@
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
 
-import { RootComponent } from './root.component';
-import { AppRoutingModule } from './app-routing.module';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
-import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
-import { ROOT_REDUCERS, metaReducers } from './reducers';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AngularFireModule } from '@angular/fire';
-import { firebaseConfig } from './firebaseConfig';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { EffectsModule } from '@ngrx/effects';
+import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { RedirectionEffects } from '@rootStore/effects';
 import { environment } from '../environments/environment';
-
+import { AppRoutingModule } from './app-routing.module';
+import { firebaseConfig } from './firebaseConfig';
+import { MaterialModule } from './material/material.module';
+import { RootComponent } from './root.component';
+import { metaReducers, ROOT_REDUCERS } from './store/reducers';
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([RedirectionEffects]),
+    MaterialModule,
     StoreModule.forRoot(ROOT_REDUCERS, {
       metaReducers,
       runtimeChecks: {
@@ -32,8 +34,6 @@ import { environment } from '../environments/environment';
     }),
     StoreDevtoolsModule.instrument({
       name: 'NgRx MyRecipes App',
-      // In a production build you would want to disable the Store Devtools
-      // logOnly: environment.production,
     }),
     StoreRouterConnectingModule.forRoot({
       routerState: RouterState.Minimal,

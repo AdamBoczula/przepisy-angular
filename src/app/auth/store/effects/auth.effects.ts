@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Credentials, User } from '../../models';
-import { AuthService } from '../../services/auth.service';
-import { AuthApiActions, LoginPageActions, UserActions, ResetPasswordActions, CreateAccountActions } from '../actions';
-import { catchError, exhaustMap, filter, map, switchMap, take, tap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
-import { Action, Store } from '@ngrx/store';
-import { Router } from '@angular/router';
-import firebase from 'firebase';
 import UserCredential = firebase.auth.UserCredential;
 import FirebaseError = firebase.FirebaseError;
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { createEffect, ofType, Actions } from '@ngrx/effects';
+import { Action, Store } from '@ngrx/store';
+import firebase from 'firebase';
+import { of, Observable } from 'rxjs';
+import { catchError, exhaustMap, filter, map, switchMap, take, tap } from 'rxjs/operators';
 import { ResetPasswordDialogComponent } from '../../components/reset-password-dialog/reset-password-dialog.component';
+import { Credentials } from '../../models';
+import { AuthService } from '../../services/auth.service';
+import { AuthApiActions, CreateAccountActions, LoginPageActions, ResetPasswordActions } from '../actions';
 import * as fromAuth from '../reducers';
 
 @Injectable()
@@ -67,11 +67,11 @@ export class AuthEffects {
             .pipe(
               take(1),
               filter(email => !!email),
-            ).subscribe((email) => this.store.dispatch(ResetPasswordActions.resetPasswordForEmail({ email }))
-          );
+              map(email => ResetPasswordActions.resetPasswordForEmail({ email }))
+            );
         }
       )
-    ), { dispatch: false }
+    )
   );
 
   private resetPasswordForEmail$: Observable<Action> = createEffect(() =>
@@ -83,18 +83,6 @@ export class AuthEffects {
             map(() => AuthApiActions.resetPasswordForEmailSuccess()),
             catchError((error: FirebaseError) => of(AuthApiActions.resetPasswordForEmailFailure({ error: error.message })))
           )
-      )
-    )
-  );
-
-  private logout$: Observable<Action> = createEffect(() =>
-    this.actions$.pipe(
-      ofType(UserActions.logout),
-      exhaustMap(() =>
-        this.authService.logout().pipe(
-          map(() => AuthApiActions.logoutSuccess()),
-          catchError((error) => of(AuthApiActions.logoutFailure({ error })))
-        )
       )
     )
   );
@@ -116,54 +104,54 @@ export class AuthEffects {
       )
   );
 
-  private loginSuccess$: Observable<Action> = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AuthApiActions.loginSuccess),
-      filter(({ loginRedirect }) => !!loginRedirect),
-      map(() => LoginPageActions.dashboardRedirect())
-    )
-  );
+  // private loginSuccess$: Observable<Action> = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(AuthApiActions.loginSuccess),
+  //     filter(({ loginRedirect }) => !!loginRedirect),
+  //     map(() => LoginPageActions.dashboardRedirect())
+  //   )
+  // );
 
-  private logoutSuccess$: Observable<Action> = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AuthApiActions.logoutSuccess),
-      map(() => LoginPageActions.loginRedirect())
-    )
-  );
+  // private logoutSuccess$: Observable<Action> = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(AuthApiActions.logoutSuccess),
+  //     map(() => LoginPageActions.loginRedirect())
+  //   )
+  // );
 
-  private dashboardRedirect$: Observable<Action> = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(LoginPageActions.dashboardRedirect,
-          AuthApiActions.createAccountSuccess),
-        tap(() => this.router.navigate(['dashboard']))
-      ),
-    { dispatch: false }
-  );
+  // private dashboardRedirect$: Observable<Action> = createEffect(
+  //   () =>
+  //     this.actions$.pipe(
+  //       ofType(LoginPageActions.dashboardRedirect,
+  //         AuthApiActions.createAccountSuccess),
+  //       tap(() => this.router.navigate(['dashboard']))
+  //     ),
+  //   { dispatch: false }
+  // );
 
-  private loginRedirect$: Observable<Action> = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(LoginPageActions.loginRedirect),
-        tap(() => this.router.navigate(['/']))
-      ),
-    { dispatch: false }
-  );
+  // private loginRedirect$: Observable<Action> = createEffect(
+  //   () =>
+  //     this.actions$.pipe(
+  //       ofType(LoginPageActions.loginRedirect),
+  //       tap(() => this.router.navigate(['auth']))
+  //     ),
+  //   { dispatch: false }
+  // );
 
-  private redirectCreateAccount$: Observable<Action> = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(LoginPageActions.createAccountRedirect),
-        tap(() => this.router.navigate(['create-new-account']))
-      ), { dispatch: false }
-  );
+  // private redirectCreateAccount$: Observable<Action> = createEffect(
+  //   () =>
+  //     this.actions$.pipe(
+  //       ofType(LoginPageActions.createAccountRedirect),
+  //       tap(() => this.router.navigate(['auth', 'create-new-account']))
+  //     ), { dispatch: false }
+  // );
 
   private returnLoginSuccess(user: UserCredential): Action {
     return AuthApiActions.loginSuccess({
-      user: {
-        id: user.user?.uid,
-        email: user.user?.email,
-      } as User,
+      // user: {
+      //   id: user.user?.uid,
+      //   email: user.user?.email,
+      // } as User,
       loginRedirect: true,
     });
   }

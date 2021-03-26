@@ -1,33 +1,39 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BackgroundLayoutComponent } from './containers/background-layout/background-layout.component';
 import { CategoriesComponent } from './containers/categories/categories.component';
 import { CreateNewComponent } from './containers/create-new/create-new.component';
 import { DashboardComponent } from './containers/dashboard/dashboard.component';
 import { RecipesComponent } from './containers/recipes/recipes.component';
-import { RecipeResolver } from '../resolvers/recipe.resolver';
+import { RecipeResolver } from '@resolvers/recipe.resolver';
+import { BackgroundContentWrapperComponent } from '../shared/container/background-content-wrapper/background-content-wrapper.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: BackgroundLayoutComponent,
+    component: BackgroundContentWrapperComponent,
     children: [
       {
         path: '',
         component: DashboardComponent,
+        data: {showMenu: true},
       },
       {
         path: 'categories',
         component: CategoriesComponent,
+        data: {showMenu: true},
       },
       {
         path: 'recipes',
         component: RecipesComponent,
         resolve: [RecipeResolver],
+        data: {showMenu: true},
+
       },
       {
         path: 'new',
         component: CreateNewComponent,
+        data: {showMenu: true},
+
       },
     ],
   },

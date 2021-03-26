@@ -12,7 +12,7 @@ import { first, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class RecipeResolver implements Resolve<boolean> {
-  constructor(private recipeService: RecipeService, private store: Store<fromRecipe.State>, private actions$: Actions) {}
+  constructor(private store: Store<fromRecipe.State>, private actions$: Actions) {}
 
   resolve(): Observable<boolean> {
     this.store.dispatch(RecipeActions.fetchRecipes());

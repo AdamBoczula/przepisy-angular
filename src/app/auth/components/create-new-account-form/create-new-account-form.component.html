@@ -1,41 +1,19 @@
 <mat-icon (click)="goBack()">keyboard_arrow_left</mat-icon>
-<mat-spinner *ngIf="pending"
-             class="spinner"></mat-spinner>
-<form [formGroup]=form>
+<mat-spinner *ngIf="pending" color="accent" class="spinner"></mat-spinner>
+
+<form [formGroup]=form fxLayout="column" class="u-mt-2">
   <mat-form-field>
     <mat-label>Email</mat-label>
-    <input type="text"
-           matInput
-           formControlName="email">
-    <!--    <mat-error *ngIf="emailFormControl?.hasError('email') && !emailFormControl?.hasError('required')">-->
-    <!--      Please enter a valid email address-->
-    <!--    </mat-error>-->
-    <!--    <mat-error *ngIf="emailFormControl?.hasError('required')">-->
-    <!--      Email is <strong>required</strong>-->
-    <!--    </mat-error>-->
+    <input type="text" matInput formControlName="email">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Hasło</mat-label>
-    <input type="password"
-           matInput
-           formControlName="password">
-    <!--    <mat-error *ngIf="passwordFormControl?.hasError('required')">-->
-    <!--      Password is <strong>required</strong>-->
-    <!--    </mat-error>-->
+    <input type="password" matInput formControlName="password">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Potwierdź Hasło</mat-label>
-    <input type="password"
-           matInput
-           formControlName="confirmPassword">
-    <!--    <mat-error *ngIf="passwordFormControl?.hasError('required')">-->
-    <!--      Password is <strong>required</strong>-->
-    <!--    </mat-error>-->
+    <input type="password" matInput formControlName="confirmPassword">
   </mat-form-field>
-  <button mat-raised-button
-          color="primary"
-          type="submit"
-          class="u-mb-8"
-          (click)="create()">Stwórz konto
+  <button mat-raised-button color="primary" type="submit" class="u-mt-2" (click)="create()">Stwórz konto
   </button>
 </form>

@@ -1,8 +1,8 @@
-import { Action, combineReducers, createFeatureSelector, createSelector, } from '@ngrx/store';
+import { combineReducers, createFeatureSelector, createSelector, Action, } from '@ngrx/store';
+import * as fromRoot from '@rootStore/reducers';
 import * as fromRecipeCreation from './recipe-creation.reducer';
 import * as fromRecipe from './recipe.reducer';
 import { recipeFeatureKey } from './recipe.reducer';
-import * as fromRoot from '../../../reducers';
 
 export const coreFeatureKey = 'core';
 
@@ -56,3 +56,15 @@ export const selectRecipes = createSelector(
   selectRecipeFeatureState,
   fromRecipe.getRecipes
 );
+
+// export const selectUserState = createSelector(
+//   selectAuthState,
+//   (state) => state?.user
+// );
+
+// export const selectUser = createSelector(selectUserState, fromUser.getUser);
+// export const selectUserLoggedIn = createSelector(selectUserState, (state) => !!state.user);
+// export const selectUserId = createSelector(
+//   selectUserState,
+//   (state) => state.user?.uid
+// );

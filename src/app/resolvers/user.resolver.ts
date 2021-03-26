@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Resolve } from '@angular/router';
-import { select, Store } from '@ngrx/store';
-import { loginSuccess } from '../auth/store/actions/auth-api.actions';
+import { UserActions } from '@coreStore/actions/';
+import { Store } from '@ngrx/store';
 import * as fromAuth from '../auth/store/reducers';
-import { filter, map, take } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,13 +13,12 @@ export class UserResolver implements Resolve<boolean> {
     private store: Store<fromAuth.State>
   ) {}
 
-  async resolve(): Promise<boolean> {
+  public async resolve(): Promise<boolean> {
     const user = await this.firebaseAuth.currentUser;
     if (user) {
       this.store.dispatch(
-        loginSuccess({
+        UserActions.setUser({
           user: { email: user.email as string, uid: user.uid },
-          loginRedirect: false,
         })
       );
     }

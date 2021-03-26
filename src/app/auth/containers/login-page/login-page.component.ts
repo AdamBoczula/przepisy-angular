@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { LoginPageActions } from '@authStore/actions';
+import * as fromAuth from '@authStore/reducers';
 import { Store } from '@ngrx/store';
+import { RedirectionActions } from '@rootStore/actions';
 import { Credentials } from '../../models';
-import { LoginPageActions } from '../../store/actions';
-import * as fromAuth from '../../store/reducers';
 
 @Component({
   selector: 'rp-login-page',
@@ -10,8 +11,8 @@ import * as fromAuth from '../../store/reducers';
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent {
-  pending$ = this.store.select(fromAuth.selectLoginPagePending);
-  error$ = this.store.select(fromAuth.selectLoginPageError);
+  public pending$ = this.store.select(fromAuth.selectLoginPagePending);
+  public error$ = this.store.select(fromAuth.selectLoginPageError);
 
   constructor(private store: Store<fromAuth.State>) {}
 
@@ -28,7 +29,7 @@ export class LoginPageComponent {
   }
 
   public createAccount(): void {
-    this.store.dispatch(LoginPageActions.createAccountRedirect());
+    this.store.dispatch(RedirectionActions.createAccount());
   }
 
   public resetPassword(): void {

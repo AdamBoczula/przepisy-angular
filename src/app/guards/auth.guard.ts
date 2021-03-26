@@ -1,18 +1,13 @@
 import { Injectable } from '@angular/core';
 import {
-  CanActivate,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
   UrlTree,
   CanLoad,
-  Route,
-  UrlSegment,
   Router,
 } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { iif, Observable, of } from 'rxjs';
-import { exhaustMap, map } from 'rxjs/operators';
-import * as fromAuth from '../auth/store/reducers';
+import { exhaustMap } from 'rxjs/operators';
+import * as fromAuth from '@authStore/reducers';
 
 @Injectable({
   providedIn: 'root',
