@@ -8,7 +8,7 @@ import { from, Observable } from 'rxjs';
 export class UserService {
 
   constructor(private afAuth: AngularFireAuth) {}
- 
+
   public logout(): Observable<void> {
     return from(this.afAuth.signOut());
   }

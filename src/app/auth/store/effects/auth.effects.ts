@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
+import { RedirectionActions } from '@rootStore/actions';
 import firebase from 'firebase';
 import { of, Observable } from 'rxjs';
 import { catchError, exhaustMap, filter, map, switchMap, take, tap } from 'rxjs/operators';
@@ -12,6 +13,7 @@ import { ResetPasswordDialogComponent } from '../../components/reset-password-di
 import { Credentials } from '../../models';
 import { AuthService } from '../../services/auth.service';
 import { AuthApiActions, CreateAccountActions, LoginPageActions, ResetPasswordActions } from '../actions';
+
 import * as fromAuth from '../reducers';
 
 @Injectable()
@@ -104,13 +106,13 @@ export class AuthEffects {
       )
   );
 
-  // private loginSuccess$: Observable<Action> = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(AuthApiActions.loginSuccess),
-  //     filter(({ loginRedirect }) => !!loginRedirect),
-  //     map(() => LoginPageActions.dashboardRedirect())
-  //   )
-  // );
+  private loginSuccess$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthApiActions.loginSuccess),
+      filter(({ loginRedirect }) => !!loginRedirect),
+      map(() => RedirectionActions.dashboard())
+    )
+  );
 
   // private logoutSuccess$: Observable<Action> = createEffect(() =>
   //   this.actions$.pipe(

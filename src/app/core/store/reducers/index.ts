@@ -2,13 +2,14 @@ import { combineReducers, createFeatureSelector, createSelector, Action, } from 
 import * as fromRoot from '@rootStore/reducers';
 import * as fromRecipeCreation from './recipe-creation.reducer';
 import * as fromRecipe from './recipe.reducer';
-import { recipeFeatureKey } from './recipe.reducer';
+import * as fromUser from './user.reducer';
 
 export const coreFeatureKey = 'core';
 
 export interface CoreState {
   [fromRecipeCreation.recipeCreationFeatureKey]: fromRecipeCreation.State;
   [fromRecipe.recipeFeatureKey]: fromRecipe.State;
+  [fromUser.userFeatureKey]: fromUser.State;
 }
 
 export interface State extends fromRoot.State {
@@ -21,19 +22,21 @@ export function reducers(
 ): {
   [fromRecipeCreation.recipeCreationFeatureKey]: fromRecipeCreation.State;
   [fromRecipe.recipeFeatureKey]: fromRecipe.State;
+  [fromUser.userFeatureKey]: fromUser.State;
 } {
   return combineReducers({
     [fromRecipeCreation.recipeCreationFeatureKey]: fromRecipeCreation.reducer,
     [fromRecipe.recipeFeatureKey]: fromRecipe.reducer,
+    [fromUser.userFeatureKey]: fromUser.reducer,
   })(state, action);
 }
 
-export const selectRecipeState = createFeatureSelector<State, CoreState>(
+export const selectCoreState = createFeatureSelector<State, CoreState>(
   coreFeatureKey
 );
 
 export const selectRecipeCreationState = createSelector(
-  selectRecipeState,
+  selectCoreState,
   (state) => state.recipeCreation
 );
 
@@ -48,8 +51,8 @@ export const selectRecipeCreationPending = createSelector(
 );
 
 export const selectRecipeFeatureState = createSelector(
-  selectRecipeState,
-  (state) => state[recipeFeatureKey]
+  selectCoreState,
+  (state) => state[fromRecipe.recipeFeatureKey]
 );
 
 export const selectRecipes = createSelector(
@@ -57,14 +60,11 @@ export const selectRecipes = createSelector(
   fromRecipe.getRecipes
 );
 
-// export const selectUserState = createSelector(
-//   selectAuthState,
-//   (state) => state?.user
-// );
+export const selectUserState = createSelector(
+  selectCoreState,
+  (state) => state[fromUser.userFeatureKey]
+);
 
-// export const selectUser = createSelector(selectUserState, fromUser.getUser);
-// export const selectUserLoggedIn = createSelector(selectUserState, (state) => !!state.user);
-// export const selectUserId = createSelector(
-//   selectUserState,
-//   (state) => state.user?.uid
-// );
+export const selectUser = createSelector(selectUserState, fromUser.getUser);
+export const selectUserLoggedIn = createSelector(selectUserState, fromUser.getUserLoggedIn);
+export const selectUserId = createSelector(selectUserState, fromUser.getUserId);

@@ -14,16 +14,16 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
-    // canActivate: [AngularFireAuthGuard],
-    // data: { authGuardPipe: redirectLoggedInToItems },
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectLoggedInToItems },
   },
-  // {
-  //   path: 'dashboard',
-  //   resolve: [UserResolver],
-  //   loadChildren: () => import('./core/core.module').then((m) => m.CoreModule),
-  //   data: { authGuardPipe: redirectUnauthorizedToLogin },
-  //   canActivate: [AngularFireAuthGuard],
-  // },
+  {
+    path: 'dashboard',
+    resolve: [UserResolver],
+    loadChildren: () => import('./core/core.module').then((m) => m.CoreModule),
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+    canActivate: [AngularFireAuthGuard],
+  },
   {
     path: '**',
     redirectTo: 'auth'

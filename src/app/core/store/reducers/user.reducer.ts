@@ -17,8 +17,13 @@ export const reducer = createReducer(
   on(UserActions.setUser, (state, { user }) => ({
     ...state,
     user,
+  })),
+  on(UserActions.logout, state => ({
+    ...state,
+    user: null
   }))
 );
 
 export const getUser = (state: State) => state.user;
-
+export const getUserLoggedIn = (state: State) => !!state.user;
+export const getUserId = (state: State) => state.user?.uid;

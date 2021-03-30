@@ -1,20 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoreRoutingModule } from './core.routing.module';
-import { NavigationComponent } from './containers/navigation/navigation.component';
-import { RecipesComponent } from './containers/recipes/recipes.component';
-import { CreateNewComponent } from './containers/create-new/create-new.component';
-import { CreateNewFormComponent } from './components/create-new-form/create-new-form.component';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from '../material/material.module';
-import { SimpleStepComponent } from './components/simple-step/simple-step.component';
-import { StepsComponent } from '../steps/steps.component';
-import { SimpleIngredientComponent } from './components/simple-ingredient/simple-ingredient.component';
-import * as fromCore from './store/reducers';
-import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { RecipeEffect } from './store/effects/recipe.effect';
+import { StoreModule } from '@ngrx/store';
+import { MaterialModule } from '../material/material.module';
+import { StepsComponent } from '../steps/steps.component';
+import { CreateNewFormComponent } from './components/create-new-form/create-new-form.component';
+import { SimpleIngredientComponent } from './components/simple-ingredient/simple-ingredient.component';
+import { SimpleStepComponent } from './components/simple-step/simple-step.component';
+import { CreateNewComponent } from './containers/create-new/create-new.component';
+import { NavigationComponent } from './containers/navigation/navigation.component';
 import { RecipeComponent } from './containers/recipe/recipe.component';
+import { RecipesComponent } from './containers/recipes/recipes.component';
+import { CoreRoutingModule } from './core.routing.module';
+import { RecipeEffect, UserEffect } from './store/effects';
+import * as fromCore from './store/reducers';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,7 @@ import { RecipeComponent } from './containers/recipe/recipe.component';
     MaterialModule,
     FormsModule,
     StoreModule.forFeature(fromCore.coreFeatureKey, fromCore.reducers),
-    EffectsModule.forFeature([RecipeEffect]),
+    EffectsModule.forFeature([RecipeEffect, UserEffect]),
   ],
 })
 export class CoreModule {}
