@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Resolve } from '@angular/router';
-import { UserActions } from '@coreStore/actions/';
 import { Store } from '@ngrx/store';
+import { UserActions } from '@rootStore/actions/';
 import * as fromAuth from '../auth/store/reducers';
 @Injectable({
   providedIn: 'root',

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { RecipeResolver } from '@resolvers/recipe.resolver';
+import { BackgroundContentWrapperComponent } from '../shared/container/background-content-wrapper/background-content-wrapper.component';
 import { CategoriesComponent } from './containers/categories/categories.component';
 import { CreateNewComponent } from './containers/create-new/create-new.component';
 import { DashboardComponent } from './containers/dashboard/dashboard.component';
 import { RecipesComponent } from './containers/recipes/recipes.component';
-import { RecipeResolver } from '@resolvers/recipe.resolver';
-import { BackgroundContentWrapperComponent } from '../shared/container/background-content-wrapper/background-content-wrapper.component';
 
 const routes: Routes = [
   {

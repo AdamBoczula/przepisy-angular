@@ -13,7 +13,7 @@ import { NavigationComponent } from './containers/navigation/navigation.componen
 import { RecipeComponent } from './containers/recipe/recipe.component';
 import { RecipesComponent } from './containers/recipes/recipes.component';
 import { CoreRoutingModule } from './core.routing.module';
-import { RecipeEffect, UserEffect } from './store/effects';
+import { RecipeEffect } from './store/effects';
 import * as fromCore from './store/reducers';
 
 @NgModule({
@@ -34,7 +34,7 @@ import * as fromCore from './store/reducers';
     MaterialModule,
     FormsModule,
     StoreModule.forFeature(fromCore.coreFeatureKey, fromCore.reducers),
-    EffectsModule.forFeature([RecipeEffect, UserEffect]),
+    EffectsModule.forFeature([RecipeEffect]),
   ],
 })
 export class CoreModule {}

@@ -9,19 +9,21 @@ import { EffectsModule } from '@ngrx/effects';
 import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { RedirectionEffects } from '@rootStore/effects';
+import { RedirectionEffects, UserEffects } from '@rootStore/effects';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { firebaseConfig } from './firebaseConfig';
 import { MaterialModule } from './material/material.module';
 import { RootComponent } from './root.component';
 import { metaReducers, ROOT_REDUCERS } from './store/reducers';
+
+
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    EffectsModule.forRoot([RedirectionEffects]),
+    EffectsModule.forRoot([RedirectionEffects, UserEffects]),
     MaterialModule,
     StoreModule.forRoot(ROOT_REDUCERS, {
       metaReducers,

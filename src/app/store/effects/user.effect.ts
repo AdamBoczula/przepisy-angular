@@ -1,22 +1,15 @@
 import { Injectable } from '@angular/core';
+import { UserService } from '@core/services/user.service';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { RedirectionActions } from '@rootStore/actions';
 import { of, Observable } from 'rxjs';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
-import { UserService } from '../../services/user.service';
 import { UserActions, UserApiActions } from '../actions';
 
 
 @Injectable()
-export class UserEffect {
-  private setUser$: Observable<Action> = createEffect(() =>
-    this.actions$.pipe(
-      ofType(UserActions.setUser),
-      map(_ => RedirectionActions.dashboard())
-    )
-  );
-
+export class UserEffects {
   private logout$: Observable<Action> = createEffect(() =>
   this.actions$.pipe(
     ofType(UserActions.logout),

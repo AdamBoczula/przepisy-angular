@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { UserActions } from '@coreStore/actions';
 import * as fromCore from '@coreStore/reducers';
-import { selectUserLoggedIn } from '@coreStore/reducers';
 import { Store } from '@ngrx/store';
+import { UserActions } from '@rootStore/actions';
+import { selectUserLoggedIn } from '@rootStore/reducers';
 @Component({
   selector: 'rp-background-content-wrapper',
   templateUrl: './background-content-wrapper.component.html',

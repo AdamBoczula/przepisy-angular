@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import * as fromUser from '@coreStore/reducers';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
+import * as fromRoot from '@rootStore/reducers';
 import { of, Observable } from 'rxjs';
 import {
   catchError,
@@ -18,7 +18,7 @@ export class RecipeEffect {
   public createRecipe$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(RecipeCreationActions.createRecipe),
-      withLatestFrom(this.store.select(fromUser.selectUserId)),
+      withLatestFrom(this.store.select(fromRoot.selectUserId)),
       filter((_, userId) => !userId),
       switchMap(([{ recipe }, userId]) =>
         this.recipeService.createRecipe(recipe, userId).pipe(
@@ -37,7 +37,7 @@ export class RecipeEffect {
 
   public fetchRecipes$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(ofType(RecipeActions.fetchRecipes),
-      withLatestFrom(this.store.select(fromUser.selectUserId)),
+      withLatestFrom(this.store.select(fromRoot.selectUserId)),
       switchMap(([_, userId]) => this.recipeService.fetchRecipes(userId)
         .pipe(
           map((recipes) => RecipeActions.fetchRecipesSuccess({ recipes })),
@@ -50,6 +50,6 @@ export class RecipeEffect {
   constructor(
     private actions$: Actions,
     private recipeService: RecipeService,
-    private store: Store<fromUser.State>
+    private store: Store<fromRoot.State>
   ) {}
 }

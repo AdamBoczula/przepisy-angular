@@ -1,16 +1,19 @@
 import { InjectionToken } from '@angular/core';
 import * as fromRouter from '@ngrx/router-store';
 import {
+  createFeatureSelector,
+  createSelector,
   Action,
   ActionReducer,
   ActionReducerMap,
-  createFeatureSelector,
   MetaReducer,
 } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
+import * as fromUser from './user.reducer';
 
 export interface State {
   router: fromRouter.RouterReducerState<any>;
+  user: fromUser.State;
 }
 
 export const ROOT_REDUCERS = new InjectionToken<
@@ -18,6 +21,7 @@ export const ROOT_REDUCERS = new InjectionToken<
 >('Root reducers token', {
   factory: () => ({
     router: fromRouter.routerReducer,
+    user: fromUser.reducer
     // tutaj jest wrzucony jeszcze lejołt ziomers
   }),
 });
@@ -38,12 +42,14 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
 export const metaReducers: MetaReducer<State>[] = !environment.production
   ? [logger]
   : [];
-
 // lejałt selektorsy
 
-export const selectRouter = createFeatureSelector<
-  State,
-  fromRouter.RouterReducerState
->('router');
-
+export const selectRouter = createFeatureSelector<State,
+  fromRouter.RouterReducerState>('router');
 export const { selectRouteData } = fromRouter.getSelectors(selectRouter);
+
+export const selectUserState = createFeatureSelector<State,
+  fromUser.State>('user');
+export const selectUser = createSelector(selectUserState, fromUser.getUser);
+export const selectUserLoggedIn = createSelector(selectUserState, fromUser.getUserLoggedIn);
+export const selectUserId = createSelector(selectUserState, fromUser.getUserId);

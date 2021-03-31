@@ -5,7 +5,7 @@ import {
   AngularFireAuthGuard,
 } from '@angular/fire/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
-import { UserResolver } from './resolvers/user.resolver';
+import { UserResolver } from '@resolvers/user.resolver';
 
 const redirectLoggedInToItems = () => redirectLoggedInTo(['dashboard']);
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['auth']);
