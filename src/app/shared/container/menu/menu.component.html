@@ -1,4 +1,25 @@
-  <a routerLink="/dashboard/categories" routerLinkActive="active">Kategorie</a>
-  <a routerLink="/dashboard/recipes" routerLinkActive="active">Przepisy</a>
-  <a routerLink="/dashboard/new" routerLinkActive="active">Dodaj nowy</a>
-  <div class="menu-item" (click)=onLogout()>Wyloguj</div>
+<mat-toolbar color="primary">
+  <a routerLink="/dashboard"
+     routerLinkActive="active">Moje Przepisy</a>
+  <div class="menu"
+       *ngIf="showMenu"
+       fxLayout
+       fxLayoutAlign="space-around center">
+    <a class="u-ml-2"
+       [ngClass]="{'highlight-item': (selectedRoute$ | async) === 'categories'}"
+       routerLink="/dashboard/categories"
+       routerLinkActive="active">Kategorie</a>
+    <a class="u-ml-2"
+       [ngClass]="{'highlight-item': (selectedRoute$ | async) === 'recipes'}"
+       routerLink="/dashboard/recipes"
+       routerLinkActive="active">Przepisy</a>
+    <a class="u-ml-2"
+       [ngClass]="{'highlight-item': (selectedRoute$ | async) === 'new'}"
+       routerLink="/dashboard/new"
+       routerLinkActive="active">Dodaj nowy</a>
+    <div class="menu-item"
+         (click)=onLogout()>Wyloguj
+    </div>
+  </div>
+</mat-toolbar>
+

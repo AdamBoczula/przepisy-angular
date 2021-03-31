@@ -15,18 +15,15 @@ const routes: Routes = [
       {
         path: '',
         component: DashboardComponent,
-        data: {showMenu: true},
       },
       {
         path: 'categories',
         component: CategoriesComponent,
-        data: {showMenu: true},
       },
       {
         path: 'recipes',
         component: RecipesComponent,
         resolve: [RecipeResolver],
-        data: {showMenu: true},
 
       },
       {

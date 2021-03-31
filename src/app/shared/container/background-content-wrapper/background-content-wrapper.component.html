@@ -1,9 +1,6 @@
-<mat-toolbar color="primary">
-  <span>Moje Przepisy</span>
-</mat-toolbar>
+<rp-menu [showMenu]="(showMenu$ | async) === true" (logout)="logout()"></rp-menu>
 
 <div class="content">
   <router-outlet></router-outlet>
 </div>
 
-<rp-menu *ngIf="showMenu$ | async" (logout)="logout()"></rp-menu>

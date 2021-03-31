@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BackgroundContentWrapperComponent } from './container/background-content-wrapper/background-content-wrapper.component';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
+import { BackgroundContentWrapperComponent } from './container/background-content-wrapper/background-content-wrapper.component';
 import { MenuComponent } from './container/menu/menu.component';
 
 

@@ -1,5 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import * as fromRouter from '@ngrx/router-store';
+import { getSelectors } from '@ngrx/router-store';
 import {
   createFeatureSelector,
   createSelector,
@@ -22,7 +23,6 @@ export const ROOT_REDUCERS = new InjectionToken<
   factory: () => ({
     router: fromRouter.routerReducer,
     user: fromUser.reducer
-    // tutaj jest wrzucony jeszcze lejołt ziomers
   }),
 });
 
@@ -46,7 +46,9 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
 
 export const selectRouter = createFeatureSelector<State,
   fromRouter.RouterReducerState>('router');
-export const { selectRouteData } = fromRouter.getSelectors(selectRouter);
+export const {
+  selectCurrentRoute, // select the current route
+} = getSelectors(selectRouter);
 
 export const selectUserState = createFeatureSelector<State,
   fromUser.State>('user');
