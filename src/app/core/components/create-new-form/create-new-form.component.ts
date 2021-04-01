@@ -1,15 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import {
-  AbstractControl,
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { Category, Recipe, Unit } from '../../models';
-import { debounce } from 'rxjs/operators';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators, } from '@angular/forms';
 import { timer } from 'rxjs';
+import { debounce } from 'rxjs/operators';
+import { Category, Recipe, Unit } from '../../models';
 
 @Component({
   selector: 'rp-create-new-form',
@@ -57,7 +50,12 @@ export class CreateNewFormComponent {
   public submit(): void {
     if (this.form.valid) {
       this.createNew.emit(this.form.value);
-      this.form.reset(null, { emitEvent: true,  });
+      this.form.reset({
+        name: null,
+        categories: null,
+        ingredients: [],
+        steps: null,
+      });
     }
   }
 

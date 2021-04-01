@@ -3,6 +3,12 @@
 @import "./app/styles/layout/layout.scss";
 @import "./app/styles/utils";
 
+$xs: 599px;
+$sm: 959px;
+$md: 1279px;
+$lg: 1919px;
+$xl: 5000px;
+
 * {
   padding: 0;
   margin: 0;
