@@ -1,4 +1,76 @@
+@import "~@angular/material/theming";
+//@include mat-core();
+
 $primary-color: #16697a;
-$secondary-color: #db6400;
-$ternary-color: #ffa62b;
+$secondary-color: #ffa62b;
 $white: #f8f1f1;
+$white: #f8f1f1;
+$black: #49423C;
+
+$primary-palette: (
+  50: #D6E7EB,
+  100: #BAD7DE,
+  200: #BBD7DD,
+  300: #4f97a9,
+  400: #19778a,
+  500: $primary-color,
+  600: #135967,
+  700: #104A56,
+  800: #0D3C45,
+  900: #0A2C33,
+  A100: #30a6c1,
+  A200: #247a8d,
+  A400: #047e9d,
+  A700: #024d5d,
+  contrast: (
+    50: $black,
+    100: $black,
+    200: $black,
+    300: $white,
+    400: $white,
+    500: $white,
+    600: $white,
+    700: $white,
+    800: $white,
+    900: $white,
+    A100: $black,
+    A200: $white,
+    A400: $white,
+    A700: $white,
+  )
+);
+$secondary-palette: (
+  50: #FFE6C2,
+  100: #FFCC85,
+  200: #FFC370,
+  300: #FFBB5C,
+  400: #FFB347,
+  500: $secondary-color,
+  600: #F58F00,
+  700: #E08300,
+  800: #A35F00,
+  900: #663C00,
+  A100: #fab45f,
+  A200: #c6812d,
+  A400: #804d0f,
+  A700: #643c07,
+  contrast: (
+    50: $black,
+    100: $black,
+    200: $black,
+    300: $white,
+    400: $white,
+    500: $white,
+    600: $white,
+    700: $white,
+    800: $white,
+    900: $white,
+    A100: $black,
+    A200: $white,
+    A400: $white,
+    A700: $white,
+  )
+);
+
+$my-primary: mat-palette($primary-palette, 100, 50, 200);
+$my-secondary: mat-palette($secondary-palette, 100, 50, 200);

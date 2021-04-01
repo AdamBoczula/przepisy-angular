@@ -1,4 +1,5 @@
 @import "~@angular/material/theming";
+@import "src/app/styles/palette";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -9,8 +10,10 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$recipe-app-primary: mat-palette($mat-indigo);
-$recipe-app-accent: mat-palette($mat-pink, A200, A100, A400);
+
+
+$recipe-app-primary: mat-palette($my-primary);
+$recipe-app-accent: mat-palette($my-secondary, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $recipe-app-warn: mat-palette($mat-red);

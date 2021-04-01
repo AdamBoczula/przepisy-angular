@@ -1,10 +1,10 @@
 <mat-toolbar color="primary">
   <a routerLink="/dashboard"
-     routerLinkActive="active">Moje Przepisy</a>
+     routerLinkActive="active"
+  class="logo-text">Moje Przepisy</a>
   <div class="menu"
        *ngIf="showMenu"
-       fxLayout
-       fxLayoutAlign="space-around center">
+       fxLayout="start center">
     <a class="u-ml-2"
        [ngClass]="{'highlight-item': (selectedRoute$ | async) === 'categories'}"
        routerLink="/dashboard/categories"
@@ -17,9 +17,9 @@
        [ngClass]="{'highlight-item': (selectedRoute$ | async) === 'new'}"
        routerLink="/dashboard/new"
        routerLinkActive="active">Dodaj nowy</a>
-    <div class="menu-item"
-         (click)=onLogout()>Wyloguj
-    </div>
+  </div>
+  <div class="menu-item"
+       (click)=onLogout()>Wyloguj
   </div>
 </mat-toolbar>
 
