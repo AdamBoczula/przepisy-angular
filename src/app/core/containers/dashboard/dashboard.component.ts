@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Recipe } from '@core/models';
+import { RecipeEditActions } from '@coreStore/actions';
+import * as fromCore from '@coreStore/reducers';
+import { Store } from '@ngrx/store';
+import * as fromRecipes from '../../store/reducers';
 
 @Component({
   selector: 'rp-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
+  public recipes$ = this.store.select(fromRecipes.selectRecipes);
 
-  constructor() { }
+  constructor(private store: Store<fromCore.State>) {}
 
-  ngOnInit(): void {
+  public onRecipeSelect(recipe: Recipe): void {
+    this.store.dispatch(RecipeEditActions.editRecipe({ editedRecipe: recipe }));
   }
-
 }

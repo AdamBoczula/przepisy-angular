@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RecipeEditionComponent } from '@core/containers/recipe-edition/recipe-edition.component';
 import { RecipeResolver } from '@resolvers/recipe.resolver';
 import { BackgroundContentWrapperComponent } from '../shared/container/background-content-wrapper/background-content-wrapper.component';
 import { CategoriesComponent } from './containers/categories/categories.component';
@@ -11,6 +12,7 @@ const routes: Routes = [
   {
     path: '',
     component: BackgroundContentWrapperComponent,
+    resolve: [RecipeResolver],
     children: [
       {
         path: '',
@@ -23,13 +25,14 @@ const routes: Routes = [
       {
         path: 'recipes',
         component: RecipesComponent,
-        resolve: [RecipeResolver],
-
+      },
+      {
+        path: 'recipe/:recipeName',
+        component: RecipeEditionComponent,
       },
       {
         path: 'new',
         component: CreateNewComponent,
-        data: {showMenu: true},
 
       },
     ],

@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import * as fromRecipes from '../../store/reducers';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Recipe } from '@core/models';
 
 @Component({
   selector: 'rp-recipes',
@@ -8,7 +7,6 @@ import * as fromRecipes from '../../store/reducers';
   styleUrls: ['./recipes.component.scss']
 })
 export class RecipesComponent {
-  public recipes$ = this.store.select(fromRecipes.selectRecipes);
-  constructor(private store: Store<fromRecipes.State>) {}
-
+  @Input() public recipes: Recipe[] | null = null;
+  @Output() public editRecipe: EventEmitter<Recipe> = new EventEmitter<Recipe>();
 }

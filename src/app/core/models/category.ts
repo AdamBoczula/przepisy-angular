@@ -8,6 +8,8 @@ export enum Category {
   SLOW = 'Czasochłonne',
   HANDMADE = 'Własnoręczne',
   SALAD = 'Sałatka',
+  SOUP = 'Zupa',
+  SUPPER = 'Kolacja',
   HEALTHY = 'Zdrowe',
-  PASTES = 'Pasty', // pasztety, pasty, humusy
+  PATE = 'Pasty', // pasztety, pasty, humusy
 }

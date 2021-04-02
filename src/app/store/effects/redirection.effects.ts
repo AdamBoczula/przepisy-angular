@@ -22,13 +22,19 @@ export class RedirectionEffects {
     ), { dispatch: false }
   );
 
-  private loginRedirct$: Observable<Action> = createEffect(() =>
+  private loginRedirect$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(RedirectionActions.login),
       tap(() => this.router.navigate(['auth', 'login']))
     ), { dispatch: false }
   );
 
+  private editRecipeRedirect$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RedirectionActions.editRecipe),
+      tap(({ recipeName }) => this.router.navigate(['dashboard', 'recipe', recipeName]))
+    ), { dispatch: false }
+  );
 
   constructor(
     private actions$: Actions,

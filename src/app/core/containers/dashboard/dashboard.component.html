@@ -1,1 +1,20 @@
-<p>dashboard works!</p>
+<mat-form-field class="u-mb-2">
+  <mat-label>Wyszukaj przepis</mat-label>
+  <input matInput
+         aria-label="Wyszukaj przepis"
+         [matAutocomplete]="auto">
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let recipe of recipes$ | async"
+                [value]="recipe.name">
+      <rp-recipe (click)="onRecipeSelect(recipe)"
+                 [recipe]="recipe"></rp-recipe>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+<div class="recently-updated">
+  <div class="mat-title">
+    Ostatnio dodane
+  </div>
+  <rp-recipes (editRecipe)="onRecipeSelect($event)"
+              [recipes]="recipes$ | async"></rp-recipes>
+</div>

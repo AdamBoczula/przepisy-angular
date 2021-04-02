@@ -1,6 +1,7 @@
 import { combineReducers, createFeatureSelector, createSelector, Action, } from '@ngrx/store';
 import * as fromRoot from '@rootStore/reducers';
 import * as fromRecipeCreation from './recipe-creation.reducer';
+import * as fromRecipeEdit from './recipe-edit.reducer';
 import * as fromRecipe from './recipe.reducer';
 
 export const coreFeatureKey = 'core';
@@ -8,6 +9,7 @@ export const coreFeatureKey = 'core';
 export interface CoreState {
   [fromRecipeCreation.recipeCreationFeatureKey]: fromRecipeCreation.State;
   [fromRecipe.recipeFeatureKey]: fromRecipe.State;
+  [fromRecipeEdit.recipeEditFeatureKey]: fromRecipeEdit.State;
 }
 
 export interface State extends fromRoot.State {
@@ -24,6 +26,7 @@ export function reducers(
   return combineReducers({
     [fromRecipeCreation.recipeCreationFeatureKey]: fromRecipeCreation.reducer,
     [fromRecipe.recipeFeatureKey]: fromRecipe.reducer,
+    [fromRecipeEdit.recipeEditFeatureKey]: fromRecipeEdit.reducer,
   })(state, action);
 }
 
