@@ -1,1 +1,5 @@
-<rp-recipe *ngFor="let recipe of recipes$ | async" [recipe]="recipe"></rp-recipe>
+<div class="recipes-list">
+  <rp-recipe *ngFor="let recipe of recipes"
+             [recipe]="recipe"
+             (click)="editRecipe.emit(recipe)"></rp-recipe>
+</div>

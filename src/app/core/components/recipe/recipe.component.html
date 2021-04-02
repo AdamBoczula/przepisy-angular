@@ -1,0 +1,12 @@
+<div class="category-image"
+     [ngStyle]="{backgroundImage: imageUrl}"></div>
+<div class="recipe-content">
+  <div class="mat-h3">{{recipe?.name}}</div>
+  <div class="mat-h4">
+    Składniki
+  </div>
+  <div class="ingredients">
+    <p *ngFor="let i of recipe?.ingredients">{{ i.name }}</p>
+  </div>
+</div>
+

@@ -1,0 +1,21 @@
+@import "src/app/styles/palette";
+
+:host {
+  display: flex;
+  flex-direction: column;
+
+  mat-form-field {
+    align-self: center;
+    width: 80%;
+  }
+}
+
+::ng-deep .mat-autocomplete-visible, .mat-selected {
+  background-color: $white !important;
+}
+
+::ng-deep mat-option {
+  height: 200px !important;
+  padding: 1rem;
+  margin: auto;
+}
