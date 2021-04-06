@@ -41,5 +41,11 @@ export class RecipeEditEffects {
         ))
     ));
 
+  private editionSuccess$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RecipeEditActions.removeRecipeSuccess, RecipeEditActions.changeRecipeSuccess),
+      map(() => RedirectionActions.dashboard())
+    ));
+
   constructor(private actions$: Actions, private recipeService: RecipeService, private store: Store<fromRoot.State>) {}
 }

@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
-import { RecipeCreationActions } from '../actions';
-import { Recipe } from '../../models';
 import { Error } from 'src/app/models/error';
+import { Recipe } from '../../models';
+import { RecipeActions, RecipeCreationActions, RecipeEditActions } from '../actions';
 
 export const recipeCreationFeatureKey = 'recipeCreation'; // raczej zmienić nazwę na creation
 

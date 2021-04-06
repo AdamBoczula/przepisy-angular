@@ -19,6 +19,6 @@ export const reducer = createReducer(
     ...state,
     editedRecipe
   })),
-  on(RecipeEditActions.resetRecipeEdit, RecipeEditActions.changeRecipeSuccess, RecipeEditActions.removeRecipe, () => (initialState))
+  on(RecipeEditActions.resetRecipeEdit, RecipeEditActions.changeRecipeSuccess, RecipeEditActions.removeRecipe, () => (initialState)),
 );
 

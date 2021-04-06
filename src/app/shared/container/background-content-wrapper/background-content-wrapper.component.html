@@ -1,3 +1,5 @@
+<mat-spinner *ngIf="pending$ | async" class="spinner" color="accent"></mat-spinner>
+
 <rp-menu [showMenu]="(showMenu$ | async) === true" (logout)="logout()"></rp-menu>
 
 <div class="content">

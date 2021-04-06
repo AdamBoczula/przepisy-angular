@@ -1,21 +1,28 @@
-<mat-form-field class="u-mb-2">
-  <mat-label>Wyszukaj przepis</mat-label>
-  <input matInput
-         aria-label="Wyszukaj przepis"
-         [matAutocomplete]="auto"
-         [formControl]="recipeCtrl">
-  <mat-autocomplete class="search-panel"
-                    #auto="matAutocomplete">
-    <mat-option *ngFor="let recipe of filteredRecipes$ | async"
-                [value]="recipe.name">
-      <div (click)="onRecipeSelect(recipe)">{{recipe.name}}</div>
-    </mat-option>
-  </mat-autocomplete>
-</mat-form-field>
-<div class="recently-updated">
-  <div class="mat-title">
-    Ostatnio dodane
+<div class="recipes"
+     *ngIf="(recipes$ | async)?.length; else noItems">
+  <mat-form-field class="u-mb-2">
+    <mat-label>Wyszukaj przepis</mat-label>
+    <input matInput
+           aria-label="Wyszukaj przepis"
+           [matAutocomplete]="auto"
+           [formControl]="recipeCtrl">
+    <mat-autocomplete class="search-panel"
+                      #auto="matAutocomplete">
+      <mat-option *ngFor="let recipe of filteredRecipes$ | async"
+                  [value]="recipe.name">
+        <div (click)="onRecipeSelect(recipe)">{{recipe.name}}</div>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <div class="recently-updated">
+    <div class="mat-title">
+      Ostatnio dodane
+    </div>
+    <rp-recipes (editRecipe)="onRecipeSelect($event)"
+                [recipes]="recipes$ | async"></rp-recipes>
   </div>
-  <rp-recipes (editRecipe)="onRecipeSelect($event)"
-              [recipes]="recipes$ | async"></rp-recipes>
 </div>
+
+<ng-template #noItems>
+  <h2 class="mat-h2">Brak przepisów</h2>
+</ng-template>

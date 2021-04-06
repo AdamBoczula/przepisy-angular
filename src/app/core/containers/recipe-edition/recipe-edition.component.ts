@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Recipe } from '@core/models';
 import { RecipeEditActions } from '@coreStore/actions';
 import * as fromCore from '@coreStore/reducers';
+import { selectRecipeCreationPending } from '@coreStore/reducers';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -11,6 +12,7 @@ import { Store } from '@ngrx/store';
 })
 export class RecipeEditionComponent {
   public editedRecipe$ = this.store.select(fromCore.selectEditedRecipe);
+  public pending$ = this.store.select(selectRecipeCreationPending);
 
   constructor(private store: Store<fromCore.State>) {}
 

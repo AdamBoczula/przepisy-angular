@@ -1,6 +1,6 @@
 <rp-recipe-edit-form *ngIf="editedRecipe$ | async as recipe"
-                     [pending]="false"
+                     [pending]="pending$ | async"
                      [editedRecipe]="recipe"
                      (submitRecipe)="editRecipe($event)"
-                     (removeRecipe)="removeRecipe($event)"
+                     (removeRecipe)="removeRecipe(recipe)"
 ></rp-recipe-edit-form>

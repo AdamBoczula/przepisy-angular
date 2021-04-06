@@ -13,7 +13,7 @@ export class RecipeEditFormComponent implements OnChanges, OnDestroy {
   @Input() public pending: boolean | null = null;
   @Input() public editedRecipe?: Recipe | undefined;
   @Output() public submitRecipe: EventEmitter<Recipe> = new EventEmitter<Recipe>();
-  @Output() public removeRecipe?: EventEmitter<Recipe> = new EventEmitter<Recipe>();
+  @Output() public removeRecipe: EventEmitter<Recipe> = new EventEmitter<Recipe>();
   public isInEditMode = true;
   public availableCategories: string[] = Object.values(Category);
   public availableUnits: string[] = Object.values(Unit);
