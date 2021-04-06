@@ -8,7 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { MaterialModule } from '../material/material.module';
 import { StepsComponent } from '../steps/steps.component';
-import { CreateNewFormComponent } from './components/create-new-form/create-new-form.component';
+import { RecipeEditFormComponent } from './components/recipe-edit-form/recipe-edit-form.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { SimpleIngredientComponent } from './components/simple-ingredient/simple-ingredient.component';
 import { SimpleStepComponent } from './components/simple-step/simple-step.component';
@@ -24,7 +24,7 @@ import * as fromCore from './store/reducers';
     NavigationComponent,
     RecipesComponent,
     CreateNewComponent,
-    CreateNewFormComponent,
+    RecipeEditFormComponent,
     StepsComponent,
     SimpleIngredientComponent,
     SimpleStepComponent,

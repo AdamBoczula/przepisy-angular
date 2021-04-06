@@ -2,6 +2,7 @@ import { combineReducers, createFeatureSelector, createSelector, Action, } from 
 import * as fromRoot from '@rootStore/reducers';
 import * as fromRecipeCreation from './recipe-creation.reducer';
 import * as fromRecipeEdit from './recipe-edit.reducer';
+import { recipeEditFeatureKey } from './recipe-edit.reducer';
 import * as fromRecipe from './recipe.reducer';
 
 export const coreFeatureKey = 'core';
@@ -57,5 +58,15 @@ export const selectRecipeFeatureState = createSelector(
 export const selectRecipes = createSelector(
   selectRecipeFeatureState,
   fromRecipe.getRecipes
+);
+
+export const selectRecipeEditState = createSelector(
+  selectCoreState,
+  (state) => state[recipeEditFeatureKey]
+);
+
+export const selectEditedRecipe = createSelector(
+  selectRecipeEditState,
+  state => state.editedRecipe
 );
 

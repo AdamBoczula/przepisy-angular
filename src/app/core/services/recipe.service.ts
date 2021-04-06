@@ -31,4 +31,13 @@ export class RecipeService {
       this.afdb.database.ref(`/users/${userId}/recipes`).push(recipe)
     );
   }
+
+  public changeRecipe(recipe: Recipe, userId?: string): Observable<DatabaseReference> {
+    return from(this.afdb.database.ref(`/users/${userId}/recipes/${recipe.id}`).update(recipe));
+  }
+
+  public removeRecipe(recipe: Recipe, userId?: string): Observable<DatabaseReference> {
+    return from(this.afdb.database.ref(`/users/${userId}/recipes/${recipe?.id}`).remove());
+  }
+
 }

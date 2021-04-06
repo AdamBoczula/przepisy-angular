@@ -7,9 +7,9 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./simple-ingredient.component.scss'],
 })
 export class SimpleIngredientComponent {
-  @Output() removeIngredient = new EventEmitter<number>();
-  @Input() ingredientIndex = 0;
-  @Input() availableUnits: string[] = [];
+  @Output() public removeIngredient = new EventEmitter<number>();
+  @Input() public ingredientIndex = 0;
+  @Input() public availableUnits: string[] = [];
   @Input() public ingredientFG: any;
 
   public remove(): void {
@@ -19,10 +19,7 @@ export class SimpleIngredientComponent {
   }
 
   public disabled(): boolean {
-    return !this.name;
-  }
-
-  private get name(): string {
-    return (this.ingredientFG as FormGroup).value.name;
+    return !(this.ingredientFG as FormGroup).value.name
+      || (this.ingredientFG as FormGroup).disabled;
   }
 }

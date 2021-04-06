@@ -1,25 +1,18 @@
 <mat-toolbar color="primary">
   <a routerLink="/dashboard"
      routerLinkActive="active"
-  class="logo-text">Moje Przepisy</a>
-  <div class="menu"
-       *ngIf="showMenu"
-       fxLayout="start center">
-    <a class="u-ml-2"
-       [ngClass]="{'highlight-item': (selectedRoute$ | async) === 'categories'}"
-       routerLink="/dashboard/categories"
-       routerLinkActive="active">Kategorie</a>
-    <a class="u-ml-2"
-       [ngClass]="{'highlight-item': (selectedRoute$ | async) === 'recipes'}"
-       routerLink="/dashboard/recipes"
-       routerLinkActive="active">Przepisy</a>
-    <a class="u-ml-2"
-       [ngClass]="{'highlight-item': (selectedRoute$ | async) === 'new'}"
-       routerLink="/dashboard/new"
-       routerLinkActive="active">Dodaj nowy</a>
-  </div>
-  <div class="menu-item"
-       (click)=onLogout()>Wyloguj
+     class="logo-text">Moje Przepisy</a>
+  <div class="menu-items" *ngIf="showMenu">
+    <div class="menu"
+         fxLayout="start center">
+      <a class="u-ml-2"
+         [ngClass]="{'highlight-item': (selectedRoute$ | async) === 'new'}"
+         routerLink="/dashboard/new"
+         routerLinkActive="active">Dodaj nowy</a>
+    </div>
+    <div class="menu-item"
+         (click)=onLogout()>Wyloguj
+    </div>
   </div>
 </mat-toolbar>
 

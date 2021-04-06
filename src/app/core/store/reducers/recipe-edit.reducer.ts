@@ -15,10 +15,10 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
-  on(RecipeEditActions.editRecipe, (state, { editedRecipe }) => ({
+  on(RecipeEditActions.editRecipe, RecipeEditActions.changeRecipe, (state, { editedRecipe }) => ({
     ...state,
     editedRecipe
   })),
-  on(RecipeEditActions.resetRecipeEdit, () => (initialState))
+  on(RecipeEditActions.resetRecipeEdit, RecipeEditActions.changeRecipeSuccess, RecipeEditActions.removeRecipe, () => (initialState))
 );
 

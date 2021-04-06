@@ -2,12 +2,13 @@
   <mat-label>Wyszukaj przepis</mat-label>
   <input matInput
          aria-label="Wyszukaj przepis"
-         [matAutocomplete]="auto">
-  <mat-autocomplete #auto="matAutocomplete">
-    <mat-option *ngFor="let recipe of recipes$ | async"
+         [matAutocomplete]="auto"
+         [formControl]="recipeCtrl">
+  <mat-autocomplete class="search-panel"
+                    #auto="matAutocomplete">
+    <mat-option *ngFor="let recipe of filteredRecipes$ | async"
                 [value]="recipe.name">
-      <rp-recipe (click)="onRecipeSelect(recipe)"
-                 [recipe]="recipe"></rp-recipe>
+      <div (click)="onRecipeSelect(recipe)">{{recipe.name}}</div>
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>
