@@ -1,15 +1,9 @@
 import { Injectable } from '@angular/core';
-import { createEffect, ofType, Actions } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
 import * as fromRoot from '@rootStore/reducers';
-import { of, Observable } from 'rxjs';
-import {
-  catchError,
-  filter,
-  map,
-  switchMap,
-  withLatestFrom,
-} from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, filter, map, switchMap, withLatestFrom, } from 'rxjs/operators';
 import { RecipeService } from '../../services/recipe.service';
 import { RecipeActions, RecipeCreationActions } from '../actions';
 
@@ -23,7 +17,7 @@ export class RecipeEffect {
       switchMap(([{ recipe }, userId]) =>
         this.recipeService.createRecipe(recipe, userId).pipe(
           map(() => RecipeCreationActions.createRecipeSuccess()),
-          catchError((error) =>
+          catchError(() =>
             of(
               RecipeCreationActions.createRecipeFailure({
                 error: 'Nie można stworzyć przepisu',
@@ -41,7 +35,7 @@ export class RecipeEffect {
       switchMap(([_, userId]) => this.recipeService.fetchRecipes(userId)
         .pipe(
           map((recipes) => RecipeActions.fetchRecipesSuccess({ recipes })),
-          catchError(e => of(RecipeActions.fetchRecipesFailure)),
+          catchError(() => of(RecipeActions.fetchRecipesFailure)),
         )
       )
     )

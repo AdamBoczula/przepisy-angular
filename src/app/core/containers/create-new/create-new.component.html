@@ -1,1 +1,2 @@
-<rp-create-new-form (createNew)="createNewRecipe($event)" [pending]="pending$ | async"></rp-create-new-form>
+<rp-recipe-edit-form (submitRecipe)="createNewRecipe($event)"
+                     [pending]="pending$ | async"></rp-recipe-edit-form>

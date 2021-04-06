@@ -11,7 +11,8 @@
     justify-content: space-between;
 
     .ingredients {
-      max-height: 170px;
+      min-height: 30vh;
+      max-height: 40vh;
       overflow-x: hidden;
       overflow-y: auto;
     }
