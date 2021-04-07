@@ -10,11 +10,14 @@ import {
   MetaReducer,
 } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
+import * as fromLayout from './layout.reducer';
 import * as fromUser from './user.reducer';
 
 export interface State {
   router: fromRouter.RouterReducerState<any>;
   user: fromUser.State;
+  layout: fromLayout.State;
+
 }
 
 export const ROOT_REDUCERS = new InjectionToken<
@@ -22,7 +25,8 @@ export const ROOT_REDUCERS = new InjectionToken<
 >('Root reducers token', {
   factory: () => ({
     router: fromRouter.routerReducer,
-    user: fromUser.reducer
+    user: fromUser.reducer,
+    layout: fromLayout.reducer,
   }),
 });
 
@@ -42,7 +46,6 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
 export const metaReducers: MetaReducer<State>[] = !environment.production
   ? [logger]
   : [];
-// lejałt selektorsy
 
 export const selectRouter = createFeatureSelector<State,
   fromRouter.RouterReducerState>('router');
@@ -55,3 +58,6 @@ export const selectUserState = createFeatureSelector<State,
 export const selectUser = createSelector(selectUserState, fromUser.getUser);
 export const selectUserLoggedIn = createSelector(selectUserState, fromUser.getUserLoggedIn);
 export const selectUserId = createSelector(selectUserState, fromUser.getUserId);
+
+export const selectLayoutState = createFeatureSelector<State, fromLayout.State>('layout');
+export const selectPending = createSelector(selectLayoutState, fromLayout.getPending);

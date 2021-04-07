@@ -8,22 +8,19 @@ export const recipeFeatureKey = 'recipe'; // trzeba będzie zmienic na coś jak 
 export interface State {
   recipes: Recipe[];
   error: HttpErrorResponse | null;
-  pending: boolean;
 }
 
 export const initialState: State = {
   recipes: [],
   error: null,
-  pending: false,
 };
 
 export const reducer = createReducer(
   initialState,
-  on(RecipeActions.fetchRecipes, state => ({ ...state, pending: true })),
+  on(RecipeActions.fetchRecipes, state => ({ ...state })),
   on(RecipeActions.fetchRecipesSuccess, (state, { recipes }) => ({
       ...state,
       recipes,
-      pending: false,
     })
   ));
 

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import * as fromCore from '@coreStore/reducers';
 import { Store } from '@ngrx/store';
 import { UserActions } from '@rootStore/actions';
-import { selectUserLoggedIn } from '@rootStore/reducers';
+import * as fromRoot from '@rootStore/reducers';
 
 @Component({
   selector: 'rp-background-content-wrapper',
@@ -10,10 +9,10 @@ import { selectUserLoggedIn } from '@rootStore/reducers';
   styleUrls: ['./background-content-wrapper.component.scss']
 })
 export class BackgroundContentWrapperComponent {
-  public pending$ = this.store.select(fromCore.selectFetchRecipePending);
-  public showMenu$ = this.store.select(selectUserLoggedIn);
+  public pending$ = this.store.select(fromRoot.selectPending);
+  public showMenu$ = this.store.select(fromRoot.selectUserLoggedIn);
 
-  constructor(private store: Store<fromCore.State>) {}
+  constructor(private store: Store<fromRoot.State>) {}
 
   public logout(): void {
     this.store.dispatch(UserActions.logout());

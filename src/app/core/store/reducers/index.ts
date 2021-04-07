@@ -60,11 +60,6 @@ export const selectRecipes = createSelector(
   fromRecipe.getRecipes
 );
 
-export const selectFetchRecipePending = createSelector(
-  selectRecipeFeatureState,
-  state => state.pending
-);
-
 export const selectRecipeEditState = createSelector(
   selectCoreState,
   (state) => state[recipeEditFeatureKey]
