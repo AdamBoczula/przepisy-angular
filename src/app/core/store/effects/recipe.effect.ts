@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
+import { RedirectionActions } from '@rootStore/actions';
 import * as fromRoot from '@rootStore/reducers';
-import { Observable, of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { catchError, filter, map, switchMap, withLatestFrom, } from 'rxjs/operators';
 import { RecipeService } from '../../services/recipe.service';
 import { RecipeActions, RecipeCreationActions } from '../actions';
@@ -26,6 +27,13 @@ export class RecipeEffect {
           )
         )
       )
+    )
+  );
+
+  public createRecipeSuccess$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RecipeCreationActions.createRecipeSuccess),
+      map(() => RedirectionActions.dashboard()),
     )
   );
 
